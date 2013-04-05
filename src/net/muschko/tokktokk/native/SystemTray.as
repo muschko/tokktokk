@@ -49,7 +49,7 @@ package net.muschko.tokktokk.native
             // System Tray für Mac OS
             if (NativeApplication.supportsDockIcon) {
                 icon.contentLoaderInfo.addEventListener(Event.COMPLETE, iconLoadComplete);
-                icon.load(new URLRequest("icons/TokkTokk28.png"));
+                icon.load(new URLRequest("icons/TokkTokk128.png"));
                 var dock:DockIcon = NativeApplication.nativeApplication.icon as DockIcon;
                 dock.menu = contextMenu;
             }
