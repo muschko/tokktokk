@@ -19,6 +19,9 @@ package net.muschko.tokktokk.native
         // Kontextmenu
         private var contextMenu:NativeMenu = new NativeMenu();
 
+        // Updater
+        private var updater:UpdateTokkTokk = new UpdateTokkTokk();
+
         public function SystemTray()
         {
         }
@@ -57,9 +60,16 @@ package net.muschko.tokktokk.native
          */
         private function setContextMenu():void
         {
+            // Über Kontext
+            var aboutCommand:NativeMenuItem = contextMenu.addItem(new NativeMenuItem("Über TokkTokk!"));
+            aboutCommand.addEventListener(Event.SELECT, openLink);
+
+            // Über Kontext
+            var updateCommand:NativeMenuItem = contextMenu.addItem(new NativeMenuItem("Update TokkTokk!"));
+            updateCommand.addEventListener(Event.SELECT, update);
+
             // Schließen Menu nur bei Windows anzeigen
-            if (Capabilities.os.search("Windows") >= 0)
-            {
+            if (Capabilities.os.search("Windows") >= 0) {
                 var exitCommand:NativeMenuItem = contextMenu.addItem(new NativeMenuItem("Schließen"));
                 exitCommand.addEventListener(Event.SELECT, function (event:Event):void
                 {
@@ -67,14 +77,16 @@ package net.muschko.tokktokk.native
                     NativeApplication.nativeApplication.exit();
                 });
             }
+        }
 
-            // Über Kontext
-            var aboutCommand:NativeMenuItem = contextMenu.addItem(new NativeMenuItem("Über TokkTokk!"));
-            aboutCommand.addEventListener(Event.SELECT, function (event:Event):void
-            {
-                var targetURL:URLRequest = new URLRequest("http://www.tokktokk.de");
-                navigateToURL(targetURL,"_blank");
-            });
+        /**
+         * TokkTokk! Link öffnen
+         * @param event
+         */
+        private function openLink(event:Event):void
+        {
+            var targetURL:URLRequest = new URLRequest("http://www.tokktokk.de");
+            navigateToURL(targetURL, "_blank");
         }
 
         /**
@@ -86,6 +98,15 @@ package net.muschko.tokktokk.native
             NativeApplication.nativeApplication.icon.bitmaps =
                     [event.target.content.bitmapData];
 
+        }
+
+        /**
+         * Updated die Anwendung
+         * @param event
+         */
+        private function update(event:Event):void
+        {
+            updater.update();
         }
     }
 }
