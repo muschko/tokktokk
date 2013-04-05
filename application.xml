@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/3.5">
+    <id>net.muschko.TokkTokk</id>
+    <versionNumber>1.0</versionNumber>
+    <filename>TokkTokk</filename>
+    <name>TokkTokk!</name>
+    <copyright>Henning Muschko, Annica Storm</copyright>
+
+    <initialWindow>
+        <title>TokkTokk!</title>
+        <content>TokkTokk.swf</content>
+        <systemChrome>none</systemChrome>
+        <transparent>true</transparent>
+        <visible>true</visible>
+        <minimizable>true</minimizable>
+        <maximizable>true</maximizable>
+        <resizable>false</resizable>
+        <renderMode>direct</renderMode>
+        <width>230</width>
+        <height>50</height>
+        <fullScreen>true</fullScreen>
+    </initialWindow>
+    <!--<icon>
+        <image16x16>icons/DrinkReminder16.png</image16x16>
+        <image32x32>icons/DrinkReminder32.png</image32x32>
+        <image48x48>icons/DrinkReminder48.png</image48x48>
+        <image128x128>icons/DrinkReminder128.png</image128x128>
+    </icon>-->
+    <supportedProfiles>desktop extendedDesktop</supportedProfiles>
+
+    <description>TokkTokk! erinnert dich immer ans Trinken!</description>
+
+    <!--
+      More options:
+      http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
+      -->
+</application>
