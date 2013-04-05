@@ -21,10 +21,10 @@
         <fullScreen>true</fullScreen>
     </initialWindow>
     <!--<icon>
-        <image16x16>icons/DrinkReminder16.png</image16x16>
-        <image32x32>icons/DrinkReminder32.png</image32x32>
-        <image48x48>icons/DrinkReminder48.png</image48x48>
-        <image128x128>icons/DrinkReminder128.png</image128x128>
+        <image16x16>icons/TokkTokk16.png</image16x16>
+        <image32x32>icons/TokkTokk32.png</image32x32>
+        <image48x48>icons/TokkTokk48.png</image48x48>
+        <image128x128>icons/TokkTokk128.png</image128x128>
     </icon>-->
     <supportedProfiles>desktop extendedDesktop</supportedProfiles>
 

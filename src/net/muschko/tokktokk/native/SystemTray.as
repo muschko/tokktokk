@@ -38,7 +38,7 @@ package net.muschko.tokktokk.native
             if (NativeApplication.supportsSystemTrayIcon) {
                 NativeApplication.nativeApplication.autoExit = false;
                 icon.contentLoaderInfo.addEventListener(Event.COMPLETE, iconLoadComplete);
-                icon.load(new URLRequest("icons/DrinkReminder16.png"));
+                icon.load(new URLRequest("icons/TokkTokk16.png"));
 
                 var systray:SystemTrayIcon =
                         NativeApplication.nativeApplication.icon as SystemTrayIcon;
@@ -49,7 +49,7 @@ package net.muschko.tokktokk.native
             // System Tray für Mac OS
             if (NativeApplication.supportsDockIcon) {
                 icon.contentLoaderInfo.addEventListener(Event.COMPLETE, iconLoadComplete);
-                icon.load(new URLRequest("icons/DrinkReminder128.png"));
+                icon.load(new URLRequest("icons/TokkTokk28.png"));
                 var dock:DockIcon = NativeApplication.nativeApplication.icon as DockIcon;
                 dock.menu = contextMenu;
             }
