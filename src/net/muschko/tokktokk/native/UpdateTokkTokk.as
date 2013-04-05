@@ -1,6 +1,7 @@
 package net.muschko.tokktokk.native
 {
     import air.update.ApplicationUpdaterUI;
+    import air.update.events.DownloadErrorEvent;
     import air.update.events.StatusUpdateErrorEvent;
     import air.update.events.StatusUpdateEvent;
     import air.update.events.UpdateEvent;
@@ -23,6 +24,7 @@ package net.muschko.tokktokk.native
             updater.addEventListener(UpdateEvent.INITIALIZED, init);
             updater.addEventListener(StatusUpdateEvent.UPDATE_STATUS, check);
             updater.addEventListener(StatusUpdateErrorEvent.UPDATE_ERROR, checkError);
+            updater.addEventListener(DownloadErrorEvent.DOWNLOAD_ERROR, downloadError);
         }
 
         public function update():void
@@ -49,6 +51,11 @@ package net.muschko.tokktokk.native
         private function checkError(event:StatusUpdateErrorEvent):void
         {
             trace("ERROR");
+        }
+
+        private function downloadError(event:DownloadErrorEvent):void
+        {
+            trace("ERROR: " + event.subErrorID);
         }
     }
 }

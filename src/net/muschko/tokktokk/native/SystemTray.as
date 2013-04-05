@@ -65,11 +65,15 @@ package net.muschko.tokktokk.native
             aboutCommand.addEventListener(Event.SELECT, openLink);
 
             // Über Kontext
-            var updateCommand:NativeMenuItem = contextMenu.addItem(new NativeMenuItem("Update TokkTokk!"));
+            var updateCommand:NativeMenuItem = contextMenu.addItem(new NativeMenuItem("Nach Updates suchen"));
             updateCommand.addEventListener(Event.SELECT, update);
 
             // Schließen Menu nur bei Windows anzeigen
             if (Capabilities.os.search("Windows") >= 0) {
+
+                var separatorA:NativeMenuItem = new NativeMenuItem("A", true);
+                contextMenu.addItem(separatorA);
+
                 var exitCommand:NativeMenuItem = contextMenu.addItem(new NativeMenuItem("Schließen"));
                 exitCommand.addEventListener(Event.SELECT, function (event:Event):void
                 {
@@ -95,9 +99,7 @@ package net.muschko.tokktokk.native
          */
         private function iconLoadComplete(event:Event):void
         {
-            NativeApplication.nativeApplication.icon.bitmaps =
-                    [event.target.content.bitmapData];
-
+            NativeApplication.nativeApplication.icon.bitmaps = [event.target.content.bitmapData];
         }
 
         /**
