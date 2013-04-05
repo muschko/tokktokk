@@ -5,6 +5,7 @@ package net.muschko.tokktokk
     import flash.desktop.NativeApplication;
     import flash.display.NativeWindowDisplayState;
     import flash.display.Sprite;
+    import flash.display.StageDisplayState;
     import flash.events.Event;
     import flash.events.TimerEvent;
     import flash.system.Capabilities;
@@ -61,10 +62,10 @@ package net.muschko.tokktokk
         {
             // Blendet die Toolbar aus
             if (Settings.nativeWindow.displayState == NativeWindowDisplayState.MINIMIZED) {
-                timer.start();
-                timer.addEventListener(TimerEvent.TIMER, showRemind);
                 mainToolbar.alpha = 0;
                 Settings.nativeWindow.restore();
+                timer.start();
+                timer.addEventListener(TimerEvent.TIMER, showRemind);
             } else {
                 TweenMax.to(mainToolbar, 0.5, {alpha: 0, onComplete: showRemind, onCompleteParams: [null]});
             }
@@ -82,7 +83,9 @@ package net.muschko.tokktokk
             /* if (Capabilities.os.search("Mac") >= 0) {
              stage.fullScreenSourceRect = new Rectangle(0, 0, Capabilities.screenResolutionX, Capabilities.screenResolutionY);
              }
-             stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;*/
+
+             stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+             */
 
             Settings.nativeWindow.activate();
             Settings.nativeWindow.alwaysInFront = true;

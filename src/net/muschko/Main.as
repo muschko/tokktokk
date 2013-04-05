@@ -106,6 +106,7 @@ package net.muschko
         private function deactivate(event:Event):void
         {
             stage.frameRate = 1;
+            appController.visible = false;
         }
 
         /**
@@ -115,6 +116,7 @@ package net.muschko
         private function activate(event:Event):void
         {
             stage.frameRate = 30;
+            appController.visible = true;
         }
     }
 }
