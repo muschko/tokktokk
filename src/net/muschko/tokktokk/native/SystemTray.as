@@ -5,7 +5,9 @@ package net.muschko.tokktokk.native
     import flash.desktop.SystemTrayIcon;
     import flash.display.Loader;
     import flash.events.Event;
+    import flash.events.InvokeEvent;
     import flash.events.MouseEvent;
+    import flash.events.ScreenMouseEvent;
     import flash.net.URLRequest;
 
     import net.muschko.tokktokk.common.Settings;
@@ -47,6 +49,8 @@ package net.muschko.tokktokk.native
                 icon.contentLoaderInfo.addEventListener(Event.COMPLETE, iconLoadComplete);
                 icon.load(new URLRequest("icons/TokkTokk128.png"));
                 var dock:DockIcon = NativeApplication.nativeApplication.icon as DockIcon;
+                dock.addEventListener(ScreenMouseEvent.CLICK, activate);
+                NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, activate);
                 dock.menu = contextMenues.trayMenu;
             }
         }
@@ -60,9 +64,9 @@ package net.muschko.tokktokk.native
             NativeApplication.nativeApplication.icon.bitmaps = [event.target.content.bitmapData];
         }
 
-        private function activate(event:MouseEvent):void
+        private function activate(event:Event):void
         {
-            Settings.nativeWindow..activate();
+            Settings.nativeWindow.activate();
             Settings.nativeWindow.visible = true;
         }
     }

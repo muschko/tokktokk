@@ -144,8 +144,12 @@ package net.muschko
          */
         private function closingWindow(event:Event):void
         {
-            event.preventDefault();
-            Settings.nativeWindow.visible = false;
+            // Nur bei Windows unsichtbar schalten beim Schließen
+            if (NativeApplication.supportsSystemTrayIcon) {
+                event.preventDefault();
+                Settings.nativeWindow.visible = false;
+            }
+
         }
     }
 }
