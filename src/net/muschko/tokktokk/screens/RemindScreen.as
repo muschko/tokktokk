@@ -9,6 +9,7 @@ package net.muschko.tokktokk.screens
     import flash.events.TimerEvent;
     import flash.net.registerClassAlias;
     import flash.system.Capabilities;
+    import flash.ui.Keyboard;
     import flash.ui.Mouse;
     import flash.utils.Timer;
 
@@ -69,13 +70,15 @@ package net.muschko.tokktokk.screens
          * Schließt den ReminderScrenn mit "ESC"
          * @param event
          */
-        private function bossEscapeScreen(event:Event):void
+        private function bossEscapeScreen(event:KeyboardEvent):void
         {
-            Mouse.show();
-            timer.stop();
-            timer.removeEventListener(TimerEvent.TIMER_COMPLETE, closeScreen);
-            stage.removeEventListener(KeyboardEvent.KEY_DOWN, bossEscapeScreen);
-            this.dispatchEvent(new Event("BOSS_QUIT_REMIND"));
+            if (event.keyCode == Keyboard.ESCAPE) {
+                Mouse.show();
+                timer.stop();
+                timer.removeEventListener(TimerEvent.TIMER_COMPLETE, closeScreen);
+                stage.removeEventListener(KeyboardEvent.KEY_DOWN, bossEscapeScreen);
+                this.dispatchEvent(new Event("BOSS_QUIT_REMIND"));
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ package net.muschko
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
+    import flash.events.MouseEvent;
     import flash.events.NativeWindowDisplayStateEvent;
     import flash.geom.Point;
     import flash.geom.Rectangle;
@@ -17,6 +18,7 @@ package net.muschko
     import net.muschko.tokktokk.common.Settings;
     import net.muschko.tokktokk.data.DrinkData;
     import net.muschko.tokktokk.data.UserData;
+    import net.muschko.tokktokk.native.ContextMenues;
     import net.muschko.tokktokk.native.SystemTray;
 
     /**
@@ -27,11 +29,17 @@ package net.muschko
     [SWF(width='230', height='50', backgroundColor='#000000', frameRate='30')]
     public class Main extends Sprite
     {
+        // Appcontroller
         private var appController:AppController = new AppController();
 
+        // Userdaten
         private var userData:UserData;
 
-        private var systemTray:SystemTray = new SystemTray();
+        // SystemTray
+        private var systemTray:SystemTray;
+
+        // ContextMenues
+        private var contextMenues:ContextMenues = new ContextMenues();
 
         public function Main():void
         {
@@ -74,14 +82,16 @@ package net.muschko
             Settings.nativeWindow.x = userData._windowPosition.x;
             Settings.nativeWindow.y = userData._windowPosition.y;
 
-            // Fügt die Anwendung hinzu
-            addChild(appController);
+            // SystemTray setztn
+            systemTray = new SystemTray(contextMenues);
 
             // Prüft ab ob
             stage.nativeWindow.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE, displayStateChangeEventHandler);
+            Settings.nativeWindow.addEventListener(Event.CLOSING, closingWindow);
+            stage.addEventListener(MouseEvent.RIGHT_CLICK, rightClickMenu);
 
-            // SystemTray Einstellungen
-            systemTray.setSystemTray();
+            // Fügt die Anwendung hinzu
+            addChild(appController);
         }
 
 
@@ -117,6 +127,25 @@ package net.muschko
         {
             stage.frameRate = 30;
             appController.visible = true;
+        }
+
+        /**
+         * Rechtsklick Menü
+         * @param event
+         */
+        private function rightClickMenu(event:MouseEvent):void
+        {
+            contextMenues.rightClickMenu.display(stage, mouseX, mouseY);
+        }
+
+        /**
+         * Verhindert das Schließen über die Taskleiste
+         * @param event
+         */
+        private function closingWindow(event:Event):void
+        {
+            event.preventDefault();
+            Settings.nativeWindow.visible = false;
         }
     }
 }

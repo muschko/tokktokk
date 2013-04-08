@@ -5,7 +5,6 @@ package net.muschko.tokktokk
     import flash.desktop.NativeApplication;
     import flash.display.NativeWindowDisplayState;
     import flash.display.Sprite;
-    import flash.display.StageDisplayState;
     import flash.events.Event;
     import flash.events.TimerEvent;
     import flash.system.Capabilities;
