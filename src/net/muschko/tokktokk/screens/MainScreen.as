@@ -127,15 +127,6 @@ package net.muschko.tokktokk.screens
             dropIconSprite.addEventListener(MouseEvent.CLICK, openToolTip);
             addChild(dropIconSprite);
 
-            exitIcon.bitmapData = Assets.exitBitmap.bitmapData;
-            exitIcon.y = buttonOffsetTop;
-            exitIcon.x = toolbarBackground.width - 13;
-            exitIconSprite.addChild(exitIcon);
-            exitIconSprite.useHandCursor = true;
-            exitIconSprite.buttonMode = true;
-            exitIconSprite.addEventListener(MouseEvent.CLICK, exit);
-            //addChild(exitIconSprite);
-
             consumptionFormat.font = "myFont";
             consumptionFormat.size = 20;
             consumptionFormat.bold = false;
@@ -180,6 +171,9 @@ package net.muschko.tokktokk.screens
             else {
                 playIconSprite.alpha = 0.5;
             }
+
+            toolbarBackground.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
+            toolbarBackground.addEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
         }
 
         /**
@@ -256,6 +250,11 @@ package net.muschko.tokktokk.screens
          */
         private function remind(e:TimerEvent):void
         {
+            if (Settings.nativeWindow.startMove()) {
+                toolbarBackground.removeEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
+                toolbarBackground.removeEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
+            }
+
             remindTimer.stop();
             remindTimer.removeEventListener(TimerEvent.TIMER, remind);
 
@@ -356,24 +355,6 @@ package net.muschko.tokktokk.screens
                 removeChild(currentScreen);
             }});
 
-        }
-
-        /**
-         * Schließt das Programm
-         * @param event
-         */
-        private function exit(event:MouseEvent):void
-        {
-            Settings.nativeWindow.close();
-        }
-
-        /**
-         * Minimiert das Programm
-         * @param event
-         */
-        private function minimize(event:MouseEvent):void
-        {
-            Settings.nativeWindow.minimize();
         }
     }
 }
