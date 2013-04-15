@@ -330,6 +330,8 @@ package net.muschko.tokktokk.screens
          */
         private function moveToolbar(event:MouseEvent):void
         {
+            Settings.nativeWindow.alwaysInFront = true;
+            Settings.nativeWindow.orderToFront();
             Settings.nativeWindow.startMove();
         }
 
@@ -339,6 +341,7 @@ package net.muschko.tokktokk.screens
          */
         private function saveToolbarPosition(event:MouseEvent):void
         {
+            Settings.nativeWindow.alwaysInFront = false;
             userData._windowPosition = new Point(Settings.nativeWindow.x, Settings.nativeWindow.y);
             UserData.saveUserData(userData);
         }
