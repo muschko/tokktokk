@@ -218,7 +218,7 @@ package net.muschko.tokktokk.screens
             if (showPercent) {
                 consumptionTextField.text = Math.round(( 100 / userData._dailyRequirement) * consumption) + "%";
             } else {
-                consumptionTextField.text = (consumption / 1000) + " liter";
+                consumptionTextField.text = (consumption / 1000) + " l";
             }
 
             if (consumption >= userData._dailyRequirement && !requiredConsumptionComplete) {
@@ -239,7 +239,7 @@ package net.muschko.tokktokk.screens
                 consumptionTextField.text = Math.round(( 100 / userData._dailyRequirement) * consumption) + "%";
                 showPercent = true;
             } else {
-                consumptionTextField.text = (consumption / 1000) + " liter";
+                consumptionTextField.text = (consumption / 1000) + " l";
                 showPercent = false;
             }
         }
