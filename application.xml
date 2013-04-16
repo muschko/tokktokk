@@ -17,7 +17,7 @@
         <resizable>false</resizable>
         <renderMode>direct</renderMode>
         <width>230</width>
-        <height>50</height>
+        <height>70</height>
         <fullScreen>true</fullScreen>
     </initialWindow>
     <!--<icon>

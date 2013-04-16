@@ -26,7 +26,7 @@ package net.muschko
      *
      * @author Henning Muschko
      */
-    [SWF(width='230', height='50', backgroundColor='#000000', frameRate='30')]
+    [SWF(width='230', height='70', backgroundColor='#000000', frameRate='30')]
     public class Main extends Sprite
     {
         // Appcontroller
@@ -116,7 +116,6 @@ package net.muschko
         private function deactivate(event:Event):void
         {
             stage.frameRate = 1;
-            appController.visible = false;
         }
 
         /**

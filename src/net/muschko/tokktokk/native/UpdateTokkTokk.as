@@ -7,29 +7,41 @@ package net.muschko.tokktokk.native
     import air.update.events.UpdateEvent;
 
     import flash.events.ErrorEvent;
+    import flash.events.EventDispatcher;
 
-    public class UpdateTokkTokk
+    public class UpdateTokkTokk extends EventDispatcher
     {
         // Update Config
         private var updateURL:String = "http://www.tokktokk.de/update.xml";
 
-        // Upater
-        private var updater:ApplicationUpdaterUI = new ApplicationUpdaterUI();
+        // Updater UI
+        private var _updaterUI:ApplicationUpdaterUI = new ApplicationUpdaterUI();
 
-        public function UpdateTokkTokk()
+        public function UpdateTokkTokk(showUI:Boolean)
         {
-            updater.updateURL = updateURL;
-            updater.delay = 1;
-            updater.addEventListener(ErrorEvent.ERROR, error);
-            updater.addEventListener(UpdateEvent.INITIALIZED, init);
-            updater.addEventListener(StatusUpdateEvent.UPDATE_STATUS, check);
-            updater.addEventListener(StatusUpdateErrorEvent.UPDATE_ERROR, checkError);
-            updater.addEventListener(DownloadErrorEvent.DOWNLOAD_ERROR, downloadError);
+            _updaterUI.updateURL = updateURL;
+            _updaterUI.delay = 1;
+
+            if (!showUI) {
+                _updaterUI.isCheckForUpdateVisible = false;
+                _updaterUI.isFileUpdateVisible = false;
+                _updaterUI.isDownloadProgressVisible = false;
+                _updaterUI.isDownloadUpdateVisible = false;
+                _updaterUI.isInstallUpdateVisible = false;
+                _updaterUI.isUnexpectedErrorVisible = false;
+            } else {
+                _updaterUI.isCheckForUpdateVisible = false;
+            }
+            _updaterUI.addEventListener(ErrorEvent.ERROR, error);
+            _updaterUI.addEventListener(UpdateEvent.INITIALIZED, init);
+            _updaterUI.addEventListener(StatusUpdateEvent.UPDATE_STATUS, check);
+            _updaterUI.addEventListener(StatusUpdateErrorEvent.UPDATE_ERROR, checkError);
+            _updaterUI.addEventListener(DownloadErrorEvent.DOWNLOAD_ERROR, downloadError);
         }
 
         public function update():void
         {
-            updater.initialize();
+            _updaterUI.initialize();
         }
 
         private function error(event:ErrorEvent):void
@@ -40,7 +52,7 @@ package net.muschko.tokktokk.native
         private function init(event:UpdateEvent):void
         {
             trace("INIT");
-            updater.checkNow();
+            _updaterUI.checkNow();
         }
 
         private function check(event:StatusUpdateEvent):void
@@ -56,6 +68,16 @@ package net.muschko.tokktokk.native
         private function downloadError(event:DownloadErrorEvent):void
         {
             trace("ERROR: " + event.subErrorID);
+        }
+
+        public function get updaterUI():ApplicationUpdaterUI
+        {
+            return _updaterUI;
+        }
+
+        public function set updaterUI(value:ApplicationUpdaterUI):void
+        {
+            _updaterUI = value;
         }
     }
 }

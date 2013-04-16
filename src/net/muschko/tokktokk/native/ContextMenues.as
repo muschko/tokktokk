@@ -19,7 +19,7 @@ package net.muschko.tokktokk.native
         public var rightClickMenu:NativeMenu = new NativeMenu();
 
         // Updater
-        private var updater:UpdateTokkTokk = new UpdateTokkTokk();
+        private var updater:UpdateTokkTokk = new UpdateTokkTokk(true);
 
         public function ContextMenues()
         {

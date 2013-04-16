@@ -28,11 +28,19 @@ package net.muschko.tokktokk.screens
         private var closeIcon:Bitmap = new Bitmap();
         private var closeIconSprite:Sprite = new Sprite();
 
+        // Colors
+        private var colorBorder:uint = 0x333333;
+        private var gradientUp:uint = 0x555555;
+        private var gradientDown:uint = 0x555555;
+
         // Userdaten
         public var userData:UserData = UserData.getUserData();
 
-        public function CommonScreen()
+        public function CommonScreen(colorBorder:uint = 0x333333, gradientUp:uint = 0x555555, gradientDown:uint = 0x333333)
         {
+            this.colorBorder = colorBorder;
+            this.gradientUp = gradientUp;
+            this.gradientDown = gradientDown;
             addEventListener(Event.ADDED_TO_STAGE, init);
         }
 
@@ -43,8 +51,8 @@ package net.muschko.tokktokk.screens
             addChild(background);
             var matrix:Matrix = new Matrix();
             matrix.createGradientBox(163, 24, (Math.PI / 180) * 90, 0, 00);
-            background.graphics.lineStyle(1, 0x333333);
-            background.graphics.beginGradientFill(GradientType.LINEAR, [0x555555, 0x333333], [1, 1], [0, 255], matrix);
+            background.graphics.lineStyle(1, colorBorder);
+            background.graphics.beginGradientFill(GradientType.LINEAR, [gradientUp, gradientDown], [1, 1], [0, 255], matrix);
             background.graphics.drawRoundRect(0, 0, 229, 50, 10, 10);
             background.graphics.endFill();
             background.alpha = 0;

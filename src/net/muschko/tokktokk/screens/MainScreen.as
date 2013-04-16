@@ -1,5 +1,7 @@
 package net.muschko.tokktokk.screens
 {
+    import air.update.events.StatusUpdateEvent;
+
     import avmplus.getQualifiedClassName;
 
     import com.greensock.TweenMax;
@@ -25,6 +27,7 @@ package net.muschko.tokktokk.screens
     import net.muschko.tokktokk.common.Settings;
     import net.muschko.tokktokk.data.DrinkData;
     import net.muschko.tokktokk.data.UserData;
+    import net.muschko.tokktokk.native.UpdateTokkTokk;
 
     /**
      * Main-Toolbar
@@ -72,10 +75,14 @@ package net.muschko.tokktokk.screens
         private var toolbarBackground:Sprite = new Sprite();
 
         // Aktueller Screen
-        private var currentScreen:CommonScreen;
+        private var currentScreen:Sprite;
 
         // Signalton
         private var signal:Sound = Assets.signalSound as Sound;
+
+        // Updater
+        private var updateTokkTokk:UpdateTokkTokk = new UpdateTokkTokk(false);
+        private var updateInfo:UpdateScreen = new UpdateScreen();
 
         public function MainScreen()
         {
@@ -87,6 +94,8 @@ package net.muschko.tokktokk.screens
 
         private function initializeHandler(e:Event):void
         {
+            addChild(updateInfo);
+
             // Toolbar Hintergrund
             addChild(toolbarBackground);
             var matrix:Matrix = new Matrix();
@@ -129,7 +138,7 @@ package net.muschko.tokktokk.screens
 
             consumptionFormat.font = "myFont";
             consumptionFormat.size = 20;
-            consumptionFormat.bold = false;
+            consumptionFormat.bold = true;
             consumptionFormat.color = 0x666666;
             consumptionTextField.antiAliasType = AntiAliasType.NORMAL;
             consumptionTextField.y = buttonOffsetTop;
@@ -154,6 +163,13 @@ package net.muschko.tokktokk.screens
 
             // Anzeige aktualisieren
             this.dispatchEvent(new Event("UPDATE_LITER"));
+
+            // Überprüft ob ein update vorliegt
+            updateTokkTokk.update();
+
+            updateTokkTokk.updaterUI.addEventListener(StatusUpdateEvent.UPDATE_STATUS, check);
+
+
         }
 
         /**
@@ -278,10 +294,14 @@ package net.muschko.tokktokk.screens
          * Erstellt das Tooltip
          * @param screenName
          */
-        private function createScreen(screenName:Class):void
+        private function createScreen(screenName:Class, params:Object = null):void
         {
             var screen:Class = getDefinitionByName(getQualifiedClassName(screenName)) as Class;
-            currentScreen = new screen();
+            if (params != null) {
+                currentScreen = new screen(params);
+            } else {
+                currentScreen = new screen();
+            }
             currentScreen.addEventListener("QUIT_SCREEN", quitScreen);
             currentScreen.addEventListener("UPDATE_LITER", updateLiter);
             currentScreen.addEventListener("UPDATE_TIME", updateTime);
@@ -358,6 +378,11 @@ package net.muschko.tokktokk.screens
                 removeChild(currentScreen);
             }});
 
+        }
+
+        private function check(event:StatusUpdateEvent):void
+        {
+            updateInfo.showUpdateInfo(event.version);
         }
     }
 }
