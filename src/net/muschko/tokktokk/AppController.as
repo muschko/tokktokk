@@ -118,7 +118,7 @@ package net.muschko.tokktokk
                 // Setzt das Fesnter wieder an seine Position zurück
                 Settings.nativeWindow.x = Settings.nativWindowPositionX;
                 Settings.nativeWindow.y = Settings.nativWindowPositionY;
-                Settings.nativeWindow.width = 230;
+                Settings.nativeWindow.width = 210;
                 Settings.nativeWindow.height = 50;
 
                 TweenMax.to(mainToolbar, 1, {alpha: 1});
