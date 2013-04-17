@@ -53,7 +53,7 @@ package net.muschko.tokktokk.screens
             matrix.createGradientBox(163, 24, (Math.PI / 180) * 90, 0, 00);
             background.graphics.lineStyle(1, colorBorder);
             background.graphics.beginGradientFill(GradientType.LINEAR, [gradientUp, gradientDown], [1, 1], [0, 255], matrix);
-            background.graphics.drawRoundRect(0, 0, 229, 50, 10, 10);
+            background.graphics.drawRoundRect(0, 0, stage.stageWidth - 1, 50, 10, 10);
             background.graphics.endFill();
             background.alpha = 0;
             background.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);

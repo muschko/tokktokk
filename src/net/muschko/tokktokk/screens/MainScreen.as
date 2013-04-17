@@ -95,6 +95,7 @@ package net.muschko.tokktokk.screens
         private function initializeHandler(e:Event):void
         {
             addChild(updateInfo);
+            updateInfo.visible = false;
 
             // Toolbar Hintergrund
             addChild(toolbarBackground);
@@ -102,7 +103,7 @@ package net.muschko.tokktokk.screens
             matrix.createGradientBox(163, 24, (Math.PI / 180) * 90, 0, 00);
             toolbarBackground.graphics.lineStyle(1, 0xDDDDDD);
             toolbarBackground.graphics.beginGradientFill(GradientType.LINEAR, [0xfafafa, 0xEFEFEF], [1, 1], [0, 255], matrix);
-            toolbarBackground.graphics.drawRoundRect(0, 0, 229, 49, 10, 10);
+            toolbarBackground.graphics.drawRoundRect(0, 0, stage.stageWidth - 1, 49, 10, 10);
             toolbarBackground.graphics.endFill();
             toolbarBackground.y = 0;
             toolbarBackground.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
@@ -137,11 +138,11 @@ package net.muschko.tokktokk.screens
             addChild(dropIconSprite);
 
             consumptionFormat.font = "myFont";
-            consumptionFormat.size = 20;
+            consumptionFormat.size = 24;
             consumptionFormat.bold = true;
             consumptionFormat.color = 0x666666;
             consumptionTextField.antiAliasType = AntiAliasType.NORMAL;
-            consumptionTextField.y = buttonOffsetTop;
+            consumptionTextField.y = 7;
             consumptionTextField.embedFonts = true;
             consumptionTextField.x = stage.stageWidth - consumptionTextField.width - 15;
             consumptionTextField.defaultTextFormat = consumptionFormat;
@@ -382,6 +383,7 @@ package net.muschko.tokktokk.screens
 
         private function check(event:StatusUpdateEvent):void
         {
+            updateInfo.visible = true;
             updateInfo.showUpdateInfo(event.version);
         }
     }

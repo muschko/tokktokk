@@ -51,7 +51,7 @@ package net.muschko.tokktokk.screens
             background.graphics.drawRoundRect(0, 0, 130, 49, 10, 10);
             background.graphics.endFill();
             background.y = 0;
-            background.x = 50;
+            background.x = 40;
             addChild(background);
 
             labelFormat.font = "myFont";
@@ -61,7 +61,7 @@ package net.muschko.tokktokk.screens
 
             labelUpdateTextField.antiAliasType = AntiAliasType.NORMAL;
             labelUpdateTextField.y = 30;
-            labelUpdateTextField.x = 60;
+            labelUpdateTextField.x = 50;
             labelUpdateTextField.autoSize = TextFieldAutoSize.LEFT;
             labelUpdateTextField.embedFonts = true;
             labelUpdateTextField.selectable = false;
@@ -83,7 +83,7 @@ package net.muschko.tokktokk.screens
             labelUpdateTextField.text = "Update verfügbar: " + version;
 
             TweenMax.to(this, 0.5, {y: 20, ease: Expo.easeOut, delay: 2});
-            TweenMax.to(this, 0.5, {y: 0, ease: Expo.easeOut, delay: 7});
+            TweenMax.to(this, 0.5, {y: 0, alpha: 0, ease: Expo.easeOut, delay: 7});
         }
 
         private function update(event:MouseEvent):void

@@ -63,23 +63,22 @@ package net.muschko.tokktokk.screens
             inputMinutesTextField.text = userData._remindTime.toString();
             inputMinutesTextField.restrict = "0-9";
             inputMinutesTextField.maxChars = 2;
-            inputMinutesTextField.addEventListener(Event.CHANGE, inputChange);
             addChild(inputMinutesTextField);
 
             labelMinutesTextField.antiAliasType = AntiAliasType.NORMAL;
             labelMinutesTextField.y = 12;
-            labelMinutesTextField.x = 42;
+            labelMinutesTextField.x = 40;
             labelMinutesTextField.autoSize = TextFieldAutoSize.LEFT;
             labelMinutesTextField.embedFonts = true;
             labelMinutesTextField.selectable = false;
             labelMinutesTextField.defaultTextFormat = labelFormat;
-            labelMinutesTextField.text = "Minuten";
+            labelMinutesTextField.text = "Min.";
             addChild(labelMinutesTextField);
 
             // Buttons erstellen
             soundOnIcon.bitmapData = Assets.soundOnBitmap.bitmapData;
             soundOnIcon.y = 10;
-            soundOnIcon.x = 150;
+            soundOnIcon.x = 90;
             soundOnIconSprite.addChild(soundOnIcon);
             soundOnIconSprite.useHandCursor = true;
             soundOnIconSprite.buttonMode = true;
@@ -129,15 +128,6 @@ package net.muschko.tokktokk.screens
 
             this.dispatchEvent(new Event("UPDATE_TIME"));
             this.dispatchEvent(new Event("QUIT_SCREEN"));
-        }
-
-        private function inputChange(event:Event):void
-        {
-            if (inputMinutesTextField.text == "1" || inputMinutesTextField.text == "01") {
-                labelMinutesTextField.text = "Minute";
-            } else {
-                labelMinutesTextField.text = "Minuten";
-            }
         }
     }
 }

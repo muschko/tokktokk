@@ -26,7 +26,7 @@ package net.muschko
      *
      * @author Henning Muschko
      */
-    [SWF(width='230', height='70', backgroundColor='#000000', frameRate='30')]
+    [SWF(width='210', height='70', backgroundColor='#000000', frameRate='30')]
     public class Main extends Sprite
     {
         // Appcontroller
