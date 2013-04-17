@@ -5,10 +5,8 @@ package net.muschko.tokktokk
     import flash.desktop.NativeApplication;
     import flash.display.NativeWindowDisplayState;
     import flash.display.Sprite;
-    import flash.display.StageDisplayState;
     import flash.events.Event;
     import flash.events.TimerEvent;
-    import flash.geom.Rectangle;
     import flash.system.Capabilities;
     import flash.ui.Mouse;
     import flash.utils.Timer;
@@ -82,12 +80,12 @@ package net.muschko.tokktokk
             NativeApplication.nativeApplication.activate(Settings.nativeWindow);
 
             /* if (Capabilities.os.search("Mac") >= 0) {
-                stage.fullScreenSourceRect = new Rectangle(0, 0, Capabilities.screenResolutionX, Capabilities.screenResolutionY);
+             stage.fullScreenSourceRect = new Rectangle(0, 0, Capabilities.screenResolutionX, Capabilities.screenResolutionY);
              }
 
              stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
 
-            */
+             */
             Settings.nativeWindow.activate();
             Settings.nativeWindow.alwaysInFront = true;
             Settings.nativeWindow.x = 0;

@@ -65,9 +65,6 @@ package net.muschko.tokktokk.assets
         [Embed(source="../../../../../media/assets/fonts/Helvetica.ttf",
                 fontName="myFont",
                 mimeType="application/x-font",
-                fontWeight="normal",
-                fontStyle="normal",
-                advancedAntiAliasing="true",
                 embedAsCFF="false")]
         private var myEmbeddedFont:Class;
 

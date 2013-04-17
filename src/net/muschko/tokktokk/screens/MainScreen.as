@@ -169,8 +169,6 @@ package net.muschko.tokktokk.screens
             updateTokkTokk.update();
 
             updateTokkTokk.updaterUI.addEventListener(StatusUpdateEvent.UPDATE_STATUS, check);
-
-
         }
 
         /**
@@ -240,7 +238,7 @@ package net.muschko.tokktokk.screens
 
             if (consumption >= userData._dailyRequirement && !requiredConsumptionComplete) {
 
-                var color:uint = 0x3D873A;
+                var color:uint = 0x98be01;
                 TweenMax.to(consumptionTextField, 1, {tint: color});
                 requiredConsumptionComplete = true;
             }
@@ -278,6 +276,9 @@ package net.muschko.tokktokk.screens
             openRemindScreen();
         }
 
+        /**
+         * Öffnet den Reminderscreen
+         */
         private function openRemindScreen():void
         {
             if (userData._remindSignal) {
@@ -293,7 +294,9 @@ package net.muschko.tokktokk.screens
 
         /**
          * Erstellt das Tooltip
+         *
          * @param screenName
+         * @param params
          */
         private function createScreen(screenName:Class, params:Object = null):void
         {
@@ -378,9 +381,12 @@ package net.muschko.tokktokk.screens
                 updateLiter(null);
                 removeChild(currentScreen);
             }});
-
         }
 
+        /**
+         * Update Check und Anzeige bei einem Update
+         * @param event
+         */
         private function check(event:StatusUpdateEvent):void
         {
             updateInfo.visible = true;
