@@ -19,7 +19,7 @@ package net.muschko.tokktokk.native
         public var rightClickMenu:NativeMenu = new NativeMenu();
 
         // Updater
-        private var updater:UpdateTokkTokk = new UpdateTokkTokk(true);
+        private var updater:UpdateTokkTokk = new UpdateTokkTokk(false);
 
         public function ContextMenues()
         {
@@ -54,8 +54,8 @@ package net.muschko.tokktokk.native
             // Schließen Menu nur bei Windows anzeigen
             if (Capabilities.os.search("Windows") >= 0) {
 
-                var separatorA:NativeMenuItem = new NativeMenuItem("A", true);
-                trayMenu.addItem(separatorA);
+                var separatorC:NativeMenuItem = new NativeMenuItem("A", true);
+                trayMenu.addItem(separatorC);
 
                 var exitCommand:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("Schließen"));
                 exitCommand.addEventListener(Event.SELECT, function (event:Event):void
@@ -90,8 +90,8 @@ package net.muschko.tokktokk.native
             var aboutCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Über TokkTokk!"));
             aboutCommand.addEventListener(Event.SELECT, openLink);
 
-            var separatorA:NativeMenuItem = new NativeMenuItem("A", true);
-            rightClickMenu.addItem(separatorA);
+            var separatorB:NativeMenuItem = new NativeMenuItem("A", true);
+            rightClickMenu.addItem(separatorB);
 
             var exitCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Schließen"));
             exitCommand.addEventListener(Event.SELECT, function (event:Event):void

@@ -17,12 +17,16 @@ package net.muschko.tokktokk.native
         // Updater UI
         private var _updaterUI:ApplicationUpdaterUI = new ApplicationUpdaterUI();
 
-        public function UpdateTokkTokk(showUI:Boolean)
-        {
-            _updaterUI.updateURL = updateURL;
-            _updaterUI.delay = 1;
+        // Silent Update
+        private var silent:Boolean;
 
-            if (!showUI) {
+        public function UpdateTokkTokk(silent:Boolean)
+        {
+            this.silent = silent;
+            _updaterUI.updateURL = updateURL;
+            _updaterUI.delay = 0;
+
+            if (silent) {
                 _updaterUI.isCheckForUpdateVisible = false;
                 _updaterUI.isFileUpdateVisible = false;
                 _updaterUI.isDownloadProgressVisible = false;
@@ -58,6 +62,9 @@ package net.muschko.tokktokk.native
         private function check(event:StatusUpdateEvent):void
         {
             trace("CHECK" + event.available + " " + event.version);
+            if (silent) {
+                _updaterUI.cancelUpdate();
+            }
         }
 
         private function checkError(event:StatusUpdateErrorEvent):void

@@ -58,9 +58,13 @@ package net.muschko.tokktokk.assets
         private static const SoundOffBitmap:Class;
         public static const soundOffBitmap:Bitmap = new SoundOffBitmap();
 
-        [Embed(source="../../../../../media/assets/images/exit.png")]
-        private static const ExitBitmap:Class;
-        public static const exitBitmap:Bitmap = new ExitBitmap();
+        [Embed(source="../../../../../media/assets/icons/TokkTokk16.png")]
+        private static const TrayBitmap:Class;
+        public static const trayBitmap:Bitmap = new TrayBitmap();
+
+        [Embed(source="../../../../../media/assets/icons/TokkTokk128.png")]
+        private static const DockcBitmap:Class;
+        public static const dockBitmap:Bitmap = new DockcBitmap();
 
         [Embed(source="../../../../../media/assets/fonts/Helvetica.ttf",
                 fontName="myFont",

@@ -81,7 +81,7 @@ package net.muschko.tokktokk.screens
         private var signal:Sound = Assets.signalSound as Sound;
 
         // Updater
-        private var updateTokkTokk:UpdateTokkTokk = new UpdateTokkTokk(false);
+        private var updateTokkTokk:UpdateTokkTokk = new UpdateTokkTokk(true);
         private var updateInfo:UpdateScreen = new UpdateScreen();
 
         public function MainScreen()
@@ -391,6 +391,7 @@ package net.muschko.tokktokk.screens
         {
             updateInfo.visible = true;
             updateInfo.showUpdateInfo(event.version);
+
         }
     }
 }

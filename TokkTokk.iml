@@ -15,9 +15,15 @@
           <map>
             <entry key="compiler.debug.swf" value="true" />
             <entry key="compiler.locale" value="de_DE" />
+            <entry key="metadata.creator" value="Henning Muschko" />
+            <entry key="metadata.title" value="TokkTokk!" />
           </map>
         </compiler-options>
-        <packaging-air-desktop use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/application.xml" package-file-name="TokkTokk" />
+        <packaging-air-desktop use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/application.xml" package-file-name="TokkTokk">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/media" path-in-package="media" />
+          </files-to-package>
+        </packaging-air-desktop>
         <packaging-android />
         <packaging-ios />
       </configuration>

@@ -31,7 +31,7 @@ package net.muschko.tokktokk.screens
         public var background:Sprite = new Sprite();
 
         // Timer
-        private var updater:UpdateTokkTokk = new UpdateTokkTokk(true);
+        private var updater:UpdateTokkTokk = new UpdateTokkTokk(false);
 
         // Version
         public var version:String;
@@ -78,7 +78,7 @@ package net.muschko.tokktokk.screens
          * Zeigt die VersionsInfo
          * @param version
          */
-        public function showUpdateInfo(version:String)
+        public function showUpdateInfo(version:String):void
         {
             labelUpdateTextField.text = "Update verfügbar: " + version;
 
