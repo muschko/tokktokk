@@ -86,7 +86,7 @@ package net.muschko
             systemTray = new SystemTray(contextMenues);
 
             // Prüft ab ob
-            stage.nativeWindow.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE, displayStateChangeEventHandler);
+            //stage.nativeWindow.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE, displayStateChangeEventHandler);
             Settings.nativeWindow.addEventListener(Event.CLOSING, closingWindow);
             stage.addEventListener(MouseEvent.RIGHT_CLICK, rightClickMenu);
 
@@ -134,6 +134,7 @@ package net.muschko
          */
         private function rightClickMenu(event:MouseEvent):void
         {
+            contextMenues = new ContextMenues();
             contextMenues.rightClickMenu.display(stage, mouseX, mouseY);
         }
 

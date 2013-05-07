@@ -10,10 +10,6 @@ package net.muschko.tokktokk.assets
         private static const OkBitmap:Class;
         public static const okBitmap:Bitmap = new OkBitmap();
 
-        [Embed(source="../../../../../media/assets/images/info.png")]
-        private static const InfoBitmap:Class;
-        public static const infoBitmap:Bitmap = new InfoBitmap();
-
         [Embed(source="../../../../../media/assets/images/drop_icon.png")]
         private static const DropBitmap:Class;
         public static const dropBitmap:Bitmap = new DropBitmap();
@@ -21,10 +17,6 @@ package net.muschko.tokktokk.assets
         [Embed(source="../../../../../media/assets/images/clock.png")]
         private static const ClockBitmap:Class;
         public static const clockBitmap:Bitmap = new ClockBitmap();
-
-        [Embed(source="../../../../../media/assets/images/settings.png")]
-        private static const SettingsBitmap:Class;
-        public static const settingsBitmap:Bitmap = new SettingsBitmap();
 
         [Embed(source="../../../../../media/assets/images/close_white.png")]
         private static const CloseBitmap:Class;
@@ -41,14 +33,6 @@ package net.muschko.tokktokk.assets
         [Embed(source="../../../../../media/assets/images/beverage.png")]
         private static const BeverageBitmap:Class;
         public static const beverageBitmap:Bitmap = new BeverageBitmap();
-
-        [Embed(source="../../../../../media/assets/images/clock_half.png")]
-        private static const ClockHalfBitmap:Class;
-        public static const clockHalfBitmap:Bitmap = new ClockHalfBitmap();
-
-        [Embed(source="../../../../../media/assets/images/clock_full.png")]
-        private static const ClockFullBitmap:Class;
-        public static const clockFullBitmap:Bitmap = new ClockFullBitmap();
 
         [Embed(source="../../../../../media/assets/images/sound_on.png")]
         private static const SoundOnBitmap:Class;

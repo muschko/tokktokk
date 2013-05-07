@@ -9,6 +9,7 @@ package net.muschko.tokktokk.native
     import flash.system.Capabilities;
 
     import net.muschko.tokktokk.common.Settings;
+    import net.muschko.tokktokk.data.UserData;
 
     public class ContextMenues
     {
@@ -20,6 +21,9 @@ package net.muschko.tokktokk.native
 
         // Updater
         private var updater:UpdateTokkTokk = new UpdateTokkTokk(false);
+
+        // UserData
+        private var userData:UserData = UserData.getUserData();
 
         public function ContextMenues()
         {
@@ -46,6 +50,11 @@ package net.muschko.tokktokk.native
             // Update Kontext
             var updateCommand:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("Nach Updates suchen..."));
             updateCommand.addEventListener(Event.SELECT, update);
+
+            // Minimiert bleiben
+            var stayMinimizedCommand:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("Minimiert bleiben"));
+            stayMinimizedCommand.checked = userData._minimized;
+            stayMinimizedCommand.addEventListener(Event.SELECT, stayMinimized);
 
             // Über Kontext
             var aboutCommand:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("Über TokkTokk!"));
@@ -86,6 +95,11 @@ package net.muschko.tokktokk.native
             var updateCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Nach Updates suchen..."));
             updateCommand.addEventListener(Event.SELECT, update);
 
+            // Minimiert bleiben
+            var stayMinimizedCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Minimiert bleiben"));
+            stayMinimizedCommand.checked = userData._minimized;
+            stayMinimizedCommand.addEventListener(Event.SELECT, stayMinimized);
+
             // Update Kontext
             var aboutCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Über TokkTokk!"));
             aboutCommand.addEventListener(Event.SELECT, openLink);
@@ -103,6 +117,24 @@ package net.muschko.tokktokk.native
 
         /**
          * Updated die Anwendung
+         * @param event
+         */
+        private function stayMinimized(event:Event):void
+        {
+            var userData:UserData = UserData.getUserData();
+
+            if (userData._minimized) {
+                userData._minimized = false;
+            } else {
+                userData._minimized = true;
+                event.preventDefault();
+                Settings.nativeWindow.visible = false;
+            }
+            UserData.saveUserData(userData);
+        }
+
+        /**
+         * Minimiert bleiben
          * @param event
          */
         private function update(event:Event):void

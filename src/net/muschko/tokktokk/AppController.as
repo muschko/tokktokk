@@ -46,11 +46,19 @@ package net.muschko.tokktokk
 
             //  Userdaten
             userData = UserData.getUserData();
+
+
         }
 
         private function addedToStageHandler(e:Event):void
         {
             removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+
+            if (userData._minimized) {
+                trace("test");
+                e.preventDefault();
+                Settings.nativeWindow.visible = false;
+            }
         }
 
         /**
