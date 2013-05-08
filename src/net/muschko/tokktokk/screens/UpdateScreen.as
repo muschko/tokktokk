@@ -65,6 +65,7 @@ package net.muschko.tokktokk.screens
             labelUpdateTextField.autoSize = TextFieldAutoSize.LEFT;
             labelUpdateTextField.embedFonts = true;
             labelUpdateTextField.selectable = false;
+            labelUpdateTextField.mouseEnabled = true;
             labelUpdateTextField.defaultTextFormat = labelFormat;
             addChild(labelUpdateTextField);
 

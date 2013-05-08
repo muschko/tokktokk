@@ -11,7 +11,7 @@
         <content>TokkTokk.swf</content>
         <systemChrome>none</systemChrome>
         <transparent>true</transparent>
-        <visible>true</visible>
+        <visible>false</visible>
         <minimizable>true</minimizable>
         <maximizable>true</maximizable>
         <resizable>false</resizable>

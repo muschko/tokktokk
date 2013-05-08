@@ -125,10 +125,12 @@ package net.muschko.tokktokk.native
 
             if (userData._minimized) {
                 userData._minimized = false;
+                Settings.nativeWindow.visible = true;
+                new SystemTray(new ContextMenues());
             } else {
                 userData._minimized = true;
-                event.preventDefault();
                 Settings.nativeWindow.visible = false;
+                new SystemTray(new ContextMenues());
             }
 
             UserData.saveUserData(userData);

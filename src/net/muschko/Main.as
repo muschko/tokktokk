@@ -3,11 +3,14 @@ package net.muschko
     import flash.desktop.NativeApplication;
     import flash.display.NativeWindow;
     import flash.display.NativeWindowDisplayState;
+    import flash.display.NativeWindowInitOptions;
+    import flash.display.NativeWindowType;
     import flash.display.Screen;
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
+    import flash.events.InvokeEvent;
     import flash.events.MouseEvent;
     import flash.events.NativeWindowDisplayStateEvent;
     import flash.geom.Point;
@@ -86,27 +89,11 @@ package net.muschko
             systemTray = new SystemTray(contextMenues);
 
             // Prüft ab ob
-            //stage.nativeWindow.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGE, displayStateChangeEventHandler);
             Settings.nativeWindow.addEventListener(Event.CLOSING, closingWindow);
             stage.addEventListener(MouseEvent.RIGHT_CLICK, rightClickMenu);
 
             // Fügt die Anwendung hinzu
             addChild(appController);
-        }
-
-
-        /**
-         * Auf minimieren prüfen
-         * @param event
-         */
-        private function displayStateChangeEventHandler(event:NativeWindowDisplayStateEvent):void
-        {
-            switch (stage.nativeWindow.displayState) {
-                case NativeWindowDisplayState.MINIMIZED:
-                    userData._minimized = true;
-                    UserData.saveUserData(userData);
-                    break;
-            }
         }
 
         /**
@@ -125,7 +112,10 @@ package net.muschko
         private function activate(event:Event):void
         {
             stage.frameRate = 30;
-            appController.visible = true;
+
+            if (!userData._minimized) {
+                Settings.nativeWindow.visible = true;
+            }
         }
 
         /**

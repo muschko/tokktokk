@@ -43,8 +43,7 @@ package net.muschko.tokktokk.native
                 systray = NativeApplication.nativeApplication.icon as SystemTrayIcon;
                 systray.tooltip = "TokkTokk!";
                 systray.addEventListener(MouseEvent.CLICK, activate);
-                systray.addEventListener(MouseEvent.RIGHT_CLICK, setSystrayMenu);
-
+                systray.menu = contextMenues.trayMenu;
             }
 
             // Dock Icon für Mac OS
@@ -53,32 +52,21 @@ package net.muschko.tokktokk.native
 
                 dock = NativeApplication.nativeApplication.icon as DockIcon;
                 dock.addEventListener(ScreenMouseEvent.CLICK, activate);
-                dock.addEventListener(MouseEvent.RIGHT_CLICK, setDockMenu);
-                NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, activate);
+                dock.addEventListener(ScreenMouseEvent.RIGHT_CLICK, activate);
                 dock.menu = contextMenues.trayMenu;
+                NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, activate);
             }
         }
 
         private function activate(event:Event):void
         {
             var userData:UserData = UserData.getUserData();
+
             if (!userData._minimized) {
                 Settings.nativeWindow.activate();
                 Settings.nativeWindow.visible = true;
 
             }
-        }
-
-        private function setSystrayMenu(event:MouseEvent):void
-        {
-            contextMenues = new ContextMenues();
-            systray.menu = contextMenues.trayMenu;
-        }
-
-        private function setDockMenu(event:MouseEvent):void
-        {
-            contextMenues = new ContextMenues();
-            dock.menu = contextMenues.trayMenu;
         }
     }
 }
