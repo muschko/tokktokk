@@ -55,7 +55,6 @@ package net.muschko.tokktokk
             removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 
             if (userData._minimized) {
-                trace("test");
                 e.preventDefault();
                 Settings.nativeWindow.visible = false;
             }
@@ -123,6 +122,8 @@ package net.muschko.tokktokk
                 // Entfernt den Reminderscreen
                 removeChild(remindScreen);
 
+                userData = UserData.getUserData();
+
                 // Setzt das Fesnter wieder an seine Position zurück
                 Settings.nativeWindow.x = Settings.nativWindowPositionX;
                 Settings.nativeWindow.y = Settings.nativWindowPositionY;
@@ -130,7 +131,12 @@ package net.muschko.tokktokk
                 Settings.nativeWindow.height = 50;
 
                 TweenMax.to(mainToolbar, 1, {alpha: 1});
+
                 mainToolbar.setTimer();
+
+                if (userData._minimized) {
+                    Settings.nativeWindow.visible = false;
+                }
             }})
         }
 
