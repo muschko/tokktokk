@@ -130,6 +130,7 @@ package net.muschko.tokktokk.native
                 event.preventDefault();
                 Settings.nativeWindow.visible = false;
             }
+
             UserData.saveUserData(userData);
         }
 
