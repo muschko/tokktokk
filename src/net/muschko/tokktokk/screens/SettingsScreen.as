@@ -27,6 +27,7 @@ package net.muschko.tokktokk.screens
 
         private var soundOnIcon:Bitmap = new Bitmap();
         private var soundOnIconSprite:Sprite = new Sprite();
+        private var inputBackground:Bitmap = new Bitmap();
 
         private var buttonOffest:int = 40;
 
@@ -41,19 +42,25 @@ package net.muschko.tokktokk.screens
 
             // Eingabe erstellen
             inputFormat.font = "myFont";
-            inputFormat.size = 20;
-            inputFormat.bold = false;
-            inputFormat.color = 0xffffff;
+            inputFormat.size = 17;
+            inputFormat.bold = true;
+            inputFormat.color = 0x333333;
             inputFormat.align = "center";
 
             labelFormat.font = "myFont";
             labelFormat.size = 18;
-            labelFormat.bold = false;
-            labelFormat.color = 0xFFFFFF;
+            labelFormat.bold = true;
+            labelFormat.color = 0x666666;
+
+            // Toolbar Hintergrund
+            inputBackground.bitmapData = Assets.backgroundInputBitmap.bitmapData;
+            inputBackground.x = 57;
+            inputBackground.y = 12;
+            addChild(inputBackground);
 
             inputMinutesTextField.antiAliasType = AntiAliasType.NORMAL;
-            inputMinutesTextField.y = 10;
-            inputMinutesTextField.x = 10;
+            inputMinutesTextField.y = 11;
+            inputMinutesTextField.x = 58;
             inputMinutesTextField.embedFonts = true;
             inputMinutesTextField.defaultTextFormat = inputFormat;
             inputMinutesTextField.selectable = true;
@@ -66,19 +73,19 @@ package net.muschko.tokktokk.screens
             addChild(inputMinutesTextField);
 
             labelMinutesTextField.antiAliasType = AntiAliasType.NORMAL;
-            labelMinutesTextField.y = 12;
-            labelMinutesTextField.x = 40;
+            labelMinutesTextField.y = 10;
+            labelMinutesTextField.x = 90;
             labelMinutesTextField.autoSize = TextFieldAutoSize.LEFT;
             labelMinutesTextField.embedFonts = true;
             labelMinutesTextField.selectable = false;
             labelMinutesTextField.defaultTextFormat = labelFormat;
-            labelMinutesTextField.text = "Min.";
+            labelMinutesTextField.text = "Minuten";
             addChild(labelMinutesTextField);
 
             // Buttons erstellen
             soundOnIcon.bitmapData = Assets.soundOnBitmap.bitmapData;
-            soundOnIcon.y = 10;
-            soundOnIcon.x = 90;
+            soundOnIcon.y = 9;
+            soundOnIcon.x = stage.stageWidth - soundOnIcon.width - 10;
             soundOnIconSprite.addChild(soundOnIcon);
             soundOnIconSprite.useHandCursor = true;
             soundOnIconSprite.buttonMode = true;
@@ -86,12 +93,7 @@ package net.muschko.tokktokk.screens
             soundOnIconSprite.addEventListener(MouseEvent.MOUSE_DOWN, setSound);
 
             if (!userData._remindSignal) {
-                soundOnIconSprite.alpha = 0.5;
                 soundOnIcon.bitmapData = Assets.soundOffBitmap.bitmapData;
-            } else {
-                soundOnIconSprite.alpha = 1;
-                soundOnIconSprite.addEventListener(MouseEvent.MOUSE_OVER, over);
-                soundOnIconSprite.addEventListener(MouseEvent.MOUSE_OUT, out);
             }
         }
 
@@ -103,16 +105,10 @@ package net.muschko.tokktokk.screens
         {
             if (userData._remindSignal) {
                 userData._remindSignal = false;
-                soundOnIconSprite.alpha = 0.5;
                 soundOnIcon.bitmapData = Assets.soundOffBitmap.bitmapData;
-                soundOnIconSprite.removeEventListener(MouseEvent.MOUSE_OVER, over);
-                soundOnIconSprite.removeEventListener(MouseEvent.MOUSE_OUT, out);
             } else {
                 userData._remindSignal = true;
-                soundOnIconSprite.alpha = 1;
                 soundOnIcon.bitmapData = Assets.soundOnBitmap.bitmapData;
-                soundOnIconSprite.addEventListener(MouseEvent.MOUSE_OVER, over);
-                soundOnIconSprite.addEventListener(MouseEvent.MOUSE_OUT, out);
             }
             UserData.saveUserData(userData);
         }

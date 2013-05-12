@@ -5,6 +5,17 @@ package net.muschko.tokktokk.assets
 
     public class Assets
     {
+        [Embed(source="../../../../../media/assets/images/background.png")]
+        private static const BackgroundBitmap:Class;
+        public static const backgroundBitmap:Bitmap = new BackgroundBitmap();
+
+        [Embed(source="../../../../../media/assets/images/background_sub.png")]
+        private static const BackgroundSubBitmap:Class;
+        public static const backgroundSubBitmap:Bitmap = new BackgroundSubBitmap();
+
+        [Embed(source="../../../../../media/assets/images/background_input.png")]
+        private static const BackgroundInputBitmap:Class;
+        public static const backgroundInputBitmap:Bitmap = new BackgroundInputBitmap();
 
         [Embed(source="../../../../../media/assets/images/ok.png")]
         private static const OkBitmap:Class;
@@ -18,7 +29,7 @@ package net.muschko.tokktokk.assets
         private static const ClockBitmap:Class;
         public static const clockBitmap:Bitmap = new ClockBitmap();
 
-        [Embed(source="../../../../../media/assets/images/close_white.png")]
+        [Embed(source="../../../../../media/assets/images/close.png")]
         private static const CloseBitmap:Class;
         public static const closeBitmap:Bitmap = new CloseBitmap();
 

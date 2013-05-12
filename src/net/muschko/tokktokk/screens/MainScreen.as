@@ -46,14 +46,8 @@ package net.muschko.tokktokk.screens
         private var playIcon:Bitmap = new Bitmap();
         private var playIconSprite:Sprite = new Sprite();
 
-        private var minimizeIcon:Bitmap = new Bitmap();
-        private var minimizeIconSprite:Sprite = new Sprite();
-
-        private var exitIcon:Bitmap = new Bitmap();
-        private var exitIconSprite:Sprite = new Sprite();
-
-        private var buttonOffset:int = 40;
-        private var buttonOffsetTop:int = 10;
+        private var buttonOffset:int = 38;
+        private var buttonOffsetTop:int = 9;
 
         // Textfelder
         private var consumptionTextField:TextField = new TextField();
@@ -72,7 +66,9 @@ package net.muschko.tokktokk.screens
         private var timerMilliseconds:Number;
 
         // Toolbar Background
-        private var toolbarBackground:Sprite = new Sprite();
+        private var toolbarBackground:Bitmap = new Bitmap();
+        private var toolbarBackgroundSprite:Sprite = new Sprite();
+
 
         // Aktueller Screen
         private var currentScreen:Sprite;
@@ -98,21 +94,16 @@ package net.muschko.tokktokk.screens
             updateInfo.visible = false;
 
             // Toolbar Hintergrund
-            addChild(toolbarBackground);
-            var matrix:Matrix = new Matrix();
-            matrix.createGradientBox(163, 24, (Math.PI / 180) * 90, 0, 00);
-            toolbarBackground.graphics.lineStyle(1, 0xDDDDDD);
-            toolbarBackground.graphics.beginGradientFill(GradientType.LINEAR, [0xfafafa, 0xEFEFEF], [1, 1], [0, 255], matrix);
-            toolbarBackground.graphics.drawRoundRect(0, 0, stage.stageWidth - 1, 49, 10, 10);
-            toolbarBackground.graphics.endFill();
-            toolbarBackground.y = 0;
-            toolbarBackground.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
-            toolbarBackground.addEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
+            toolbarBackground.bitmapData = Assets.backgroundBitmap.bitmapData;
+            toolbarBackgroundSprite.addChild(toolbarBackground);
+            toolbarBackgroundSprite.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
+            toolbarBackgroundSprite.addEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
+            addChild(toolbarBackgroundSprite);
 
             // Buttons erstellen
             playIcon.bitmapData = Assets.okBitmap.bitmapData;
             playIcon.y = buttonOffsetTop;
-            playIcon.x = 10;
+            playIcon.x = 58;
             playIconSprite.addChild(playIcon);
             playIconSprite.useHandCursor = true;
             playIconSprite.buttonMode = true;
@@ -138,13 +129,14 @@ package net.muschko.tokktokk.screens
             addChild(dropIconSprite);
 
             consumptionFormat.font = "myFont";
-            consumptionFormat.size = 24;
+            consumptionFormat.size = 13;
             consumptionFormat.bold = true;
             consumptionFormat.color = 0x666666;
+            consumptionFormat.align = "center";
             consumptionTextField.antiAliasType = AntiAliasType.NORMAL;
-            consumptionTextField.y = 7;
+            consumptionTextField.y = 13;
             consumptionTextField.embedFonts = true;
-            consumptionTextField.x = stage.stageWidth - consumptionTextField.width - 15;
+            consumptionTextField.x = stage.stageWidth - consumptionTextField.width- 10;
             consumptionTextField.defaultTextFormat = consumptionFormat;
             consumptionTextField.autoSize = TextFieldAutoSize.RIGHT;
             consumptionTextField.selectable = false;

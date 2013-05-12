@@ -50,7 +50,7 @@ package net.muschko.tokktokk.screens
             background.graphics.beginGradientFill(GradientType.LINEAR, [0xd0e482, 0x98be01], [1, 1], [0, 255], matrix);
             background.graphics.drawRoundRect(0, 0, 130, 49, 10, 10);
             background.graphics.endFill();
-            background.y = 0;
+            background.y = -10;
             background.x = 40;
             addChild(background);
 
@@ -60,7 +60,7 @@ package net.muschko.tokktokk.screens
             labelFormat.color = 0xffffff;
 
             labelUpdateTextField.antiAliasType = AntiAliasType.NORMAL;
-            labelUpdateTextField.y = 30;
+            labelUpdateTextField.y = 20;
             labelUpdateTextField.x = 50;
             labelUpdateTextField.autoSize = TextFieldAutoSize.LEFT;
             labelUpdateTextField.embedFonts = true;
@@ -83,7 +83,7 @@ package net.muschko.tokktokk.screens
         {
             labelUpdateTextField.text = "Update verfügbar: " + version;
 
-            TweenMax.to(this, 0.5, {y: 20, ease: Expo.easeOut, delay: 2});
+            TweenMax.to(this, 0.5, {y: 25, ease: Expo.easeOut, delay: 2});
             TweenMax.to(this, 0.5, {y: 0, alpha: 0, ease: Expo.easeOut, delay: 7});
         }
 

@@ -40,7 +40,7 @@ package net.muschko.tokktokk.screens
             // Buttons erstellen
             cupIcon.bitmapData = Assets.cupBitmap.bitmapData;
             cupIcon.y = 8;
-            cupIcon.x = 15;
+            cupIcon.x = 58;
             cupIconSprite.addChild(cupIcon);
             cupIconSprite.useHandCursor = true;
             cupIconSprite.buttonMode = true;

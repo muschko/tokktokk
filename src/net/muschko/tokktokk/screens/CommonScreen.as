@@ -21,26 +21,19 @@ package net.muschko.tokktokk.screens
      */
     public class CommonScreen extends Sprite
     {
-        // Hintergrund
-        private var background:Sprite = new Sprite();
+        // Toolbar Background
+        private var toolbarBackground:Bitmap = new Bitmap();
+        private var toolbarBackgroundSprite:Sprite = new Sprite();
 
         // Buttons
         private var closeIcon:Bitmap = new Bitmap();
         private var closeIconSprite:Sprite = new Sprite();
 
-        // Colors
-        private var colorBorder:uint = 0x333333;
-        private var gradientUp:uint = 0x555555;
-        private var gradientDown:uint = 0x555555;
-
         // Userdaten
         public var userData:UserData = UserData.getUserData();
 
-        public function CommonScreen(colorBorder:uint = 0x333333, gradientUp:uint = 0x555555, gradientDown:uint = 0x333333)
+        public function CommonScreen()
         {
-            this.colorBorder = colorBorder;
-            this.gradientUp = gradientUp;
-            this.gradientDown = gradientDown;
             addEventListener(Event.ADDED_TO_STAGE, init);
         }
 
@@ -48,30 +41,26 @@ package net.muschko.tokktokk.screens
         {
             removeEventListener(Event.ADDED_TO_STAGE, init);
 
-            addChild(background);
-            var matrix:Matrix = new Matrix();
-            matrix.createGradientBox(163, 24, (Math.PI / 180) * 90, 0, 00);
-            background.graphics.lineStyle(1, colorBorder);
-            background.graphics.beginGradientFill(GradientType.LINEAR, [gradientUp, gradientDown], [1, 1], [0, 255], matrix);
-            background.graphics.drawRoundRect(0, 0, stage.stageWidth - 1, 50, 10, 10);
-            background.graphics.endFill();
-            background.alpha = 0;
-            background.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
-            background.addEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
+            // Toolbar Hintergrund
+            toolbarBackground.bitmapData = Assets.backgroundSubBitmap.bitmapData;
+            toolbarBackgroundSprite.addChild(toolbarBackground);
+            toolbarBackgroundSprite.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
+            toolbarBackgroundSprite.addEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
+            toolbarBackgroundSprite.alpha = 0;
+            addChild(toolbarBackgroundSprite);
 
             addChild(closeIconSprite);
             closeIcon.bitmapData = Assets.closeBitmap.bitmapData;
             closeIcon.y = 9;
-            closeIcon.x = stage.stageWidth - closeIcon.width - 10;
+            closeIcon.x = 10;
             closeIconSprite.addChild(closeIcon);
             closeIconSprite.useHandCursor = true;
             closeIconSprite.buttonMode = true;
             closeIconSprite.addEventListener(MouseEvent.CLICK, quitScreen);
-            closeIconSprite.addEventListener(MouseEvent.MOUSE_OVER, over);
-            closeIconSprite.addEventListener(MouseEvent.MOUSE_OUT, out);
+            //closeIconSprite.addEventListener(MouseEvent.MOUSE_OVER, over);
+            //closeIconSprite.addEventListener(MouseEvent.MOUSE_OUT, out);
 
-
-            TweenMax.to(background, 0.3, {alpha: 1, onComplete: function ():void
+            TweenMax.to(toolbarBackgroundSprite, 0.3, {alpha: 1, onComplete: function ():void
             {
             }});
         }
