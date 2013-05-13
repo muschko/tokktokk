@@ -53,14 +53,14 @@ package net.muschko.tokktokk.screens
             labelFormat.color = 0x666666;
 
             // Toolbar Hintergrund
-            inputBackground.bitmapData = Assets.backgroundInputBitmap.bitmapData;
-            inputBackground.x = 57;
-            inputBackground.y = 12;
-            addChild(inputBackground);
+            /* inputBackground.bitmapData = Assets.backgroundInputBitmap.bitmapData;
+             inputBackground.x = 57;
+             inputBackground.y = 12;
+             addChild(inputBackground);*/
 
             inputMinutesTextField.antiAliasType = AntiAliasType.NORMAL;
-            inputMinutesTextField.y = 11;
-            inputMinutesTextField.x = 58;
+            inputMinutesTextField.y = 26;
+            inputMinutesTextField.x = 68;
             inputMinutesTextField.embedFonts = true;
             inputMinutesTextField.defaultTextFormat = inputFormat;
             inputMinutesTextField.selectable = true;
@@ -73,8 +73,8 @@ package net.muschko.tokktokk.screens
             addChild(inputMinutesTextField);
 
             labelMinutesTextField.antiAliasType = AntiAliasType.NORMAL;
-            labelMinutesTextField.y = 10;
-            labelMinutesTextField.x = 90;
+            labelMinutesTextField.y = 25;
+            labelMinutesTextField.x = 100;
             labelMinutesTextField.autoSize = TextFieldAutoSize.LEFT;
             labelMinutesTextField.embedFonts = true;
             labelMinutesTextField.selectable = false;
@@ -84,7 +84,7 @@ package net.muschko.tokktokk.screens
 
             // Buttons erstellen
             soundOnIcon.bitmapData = Assets.soundOnBitmap.bitmapData;
-            soundOnIcon.y = 9;
+            soundOnIcon.y = 24;
             soundOnIcon.x = stage.stageWidth - soundOnIcon.width - 10;
             soundOnIconSprite.addChild(soundOnIcon);
             soundOnIconSprite.useHandCursor = true;

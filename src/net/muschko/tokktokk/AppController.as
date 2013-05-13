@@ -3,7 +3,6 @@ package net.muschko.tokktokk
     import com.greensock.TweenMax;
 
     import flash.desktop.NativeApplication;
-    import flash.display.NativeWindowDisplayState;
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.TimerEvent;
@@ -47,16 +46,14 @@ package net.muschko.tokktokk
             //  Userdaten
             userData = UserData.getUserData();
 
-
         }
 
         private function addedToStageHandler(e:Event):void
         {
             removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 
-            if (userData._minimized) {
-                e.preventDefault();
-                Settings.nativeWindow.visible = false;
+            if (!userData._minimized) {
+                Settings.nativeWindow.visible = true;
             }
         }
 
@@ -67,7 +64,7 @@ package net.muschko.tokktokk
         private function remind(event:Event):void
         {
             // Blendet die Toolbar aus
-            if (Settings.nativeWindow.displayState == NativeWindowDisplayState.MINIMIZED) {
+            if (userData._minimized) {
                 mainToolbar.alpha = 0;
                 Settings.nativeWindow.restore();
                 timer.start();
@@ -127,8 +124,8 @@ package net.muschko.tokktokk
                 // Setzt das Fesnter wieder an seine Position zurück
                 Settings.nativeWindow.x = Settings.nativWindowPositionX;
                 Settings.nativeWindow.y = Settings.nativWindowPositionY;
-                Settings.nativeWindow.width = 215;
-                Settings.nativeWindow.height = 70;
+                Settings.nativeWindow.width = 225;
+                Settings.nativeWindow.height = 85;
 
                 TweenMax.to(mainToolbar, 1, {alpha: 1});
 
@@ -152,10 +149,15 @@ package net.muschko.tokktokk
             // Setzt das Fesnter wieder an seine Position zurück
             Settings.nativeWindow.x = Settings.nativWindowPositionX;
             Settings.nativeWindow.y = Settings.nativWindowPositionY;
-            Settings.nativeWindow.width = 215;
-            Settings.nativeWindow.height = 70;
+            Settings.nativeWindow.width = 225;
+            Settings.nativeWindow.height = 85;
 
-            TweenMax.to(mainToolbar, 1, {alpha: 1});
+            if (userData._minimized) {
+                Settings.nativeWindow.visible = false;
+            } else {
+                TweenMax.to(mainToolbar, 1, {alpha: 1});
+            }
+
             mainToolbar.setTimer();
         }
     }

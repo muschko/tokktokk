@@ -47,21 +47,22 @@ package net.muschko.tokktokk.screens
             var matrix:Matrix = new Matrix();
             matrix.createGradientBox(163, 24, (Math.PI / 180) * 90, 0, 00);
             //background.graphics.lineStyle(1, 0x627a00);
-            background.graphics.beginGradientFill(GradientType.LINEAR, [0xd0e482, 0x98be01], [1, 1], [0, 255], matrix);
-            background.graphics.drawRoundRect(0, 0, 130, 49, 10, 10);
+            background.graphics.beginGradientFill(GradientType.LINEAR, [0x98be01, 0x8daf08], [1, 1], [0, 255], matrix);
+            background.graphics.drawRoundRect(0, 0, 130, 30, 10, 10);
             background.graphics.endFill();
-            background.y = -10;
-            background.x = 40;
+            background.y = 30;
+            background.x = 50;
             addChild(background);
 
             labelFormat.font = "myFont";
             labelFormat.size = 11;
             labelFormat.bold = false;
             labelFormat.color = 0xffffff;
+            // labelFormat.color = 0x42742c;
 
             labelUpdateTextField.antiAliasType = AntiAliasType.NORMAL;
-            labelUpdateTextField.y = 20;
-            labelUpdateTextField.x = 50;
+            labelUpdateTextField.y = 41;
+            labelUpdateTextField.x = 60;
             labelUpdateTextField.autoSize = TextFieldAutoSize.LEFT;
             labelUpdateTextField.embedFonts = true;
             labelUpdateTextField.selectable = false;
@@ -83,7 +84,7 @@ package net.muschko.tokktokk.screens
         {
             labelUpdateTextField.text = "Update verfügbar: " + version;
 
-            TweenMax.to(this, 0.5, {y: 25, ease: Expo.easeOut, delay: 2});
+            TweenMax.to(this, 0.5, {y: 20, ease: Expo.easeOut, delay: 2});
             TweenMax.to(this, 0.5, {y: 0, alpha: 0, ease: Expo.easeOut, delay: 7});
         }
 

@@ -3,11 +3,9 @@ package net.muschko.tokktokk.screens
     import com.greensock.TweenMax;
 
     import flash.display.Bitmap;
-    import flash.display.GradientType;
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.MouseEvent;
-    import flash.geom.Matrix;
     import flash.geom.Point;
 
     import net.muschko.tokktokk.assets.Assets;
@@ -43,6 +41,8 @@ package net.muschko.tokktokk.screens
 
             // Toolbar Hintergrund
             toolbarBackground.bitmapData = Assets.backgroundSubBitmap.bitmapData;
+            toolbarBackgroundSprite.y = 15;
+            toolbarBackgroundSprite.x = 10;
             toolbarBackgroundSprite.addChild(toolbarBackground);
             toolbarBackgroundSprite.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
             toolbarBackgroundSprite.addEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
@@ -51,8 +51,8 @@ package net.muschko.tokktokk.screens
 
             addChild(closeIconSprite);
             closeIcon.bitmapData = Assets.closeBitmap.bitmapData;
-            closeIcon.y = 9;
-            closeIcon.x = 10;
+            closeIcon.y = 23;
+            closeIcon.x = 20;
             closeIconSprite.addChild(closeIcon);
             closeIconSprite.useHandCursor = true;
             closeIconSprite.buttonMode = true;

@@ -7,18 +7,15 @@ package net.muschko.tokktokk.screens
     import com.greensock.TweenMax;
 
     import flash.display.Bitmap;
-    import flash.display.GradientType;
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.MouseEvent;
     import flash.events.TimerEvent;
-    import flash.geom.Matrix;
     import flash.geom.Point;
     import flash.media.Sound;
     import flash.net.registerClassAlias;
     import flash.text.AntiAliasType;
     import flash.text.TextField;
-    import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
     import flash.utils.Timer;
     import flash.utils.getDefinitionByName;
@@ -47,7 +44,7 @@ package net.muschko.tokktokk.screens
         private var playIconSprite:Sprite = new Sprite();
 
         private var buttonOffset:int = 38;
-        private var buttonOffsetTop:int = 9;
+        private var buttonOffsetTop:int = 23;
 
         // Textfelder
         private var consumptionTextField:TextField = new TextField();
@@ -68,6 +65,9 @@ package net.muschko.tokktokk.screens
         // Toolbar Background
         private var toolbarBackground:Bitmap = new Bitmap();
         private var toolbarBackgroundSprite:Sprite = new Sprite();
+
+        // TokkTokk Logo
+        private var tokktokk:Bitmap = new Bitmap();
 
 
         // Aktueller Screen
@@ -96,14 +96,20 @@ package net.muschko.tokktokk.screens
             // Toolbar Hintergrund
             toolbarBackground.bitmapData = Assets.backgroundBitmap.bitmapData;
             toolbarBackgroundSprite.addChild(toolbarBackground);
+            toolbarBackgroundSprite.y = 15;
+            toolbarBackgroundSprite.x = 10;
             toolbarBackgroundSprite.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
             toolbarBackgroundSprite.addEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
             addChild(toolbarBackgroundSprite);
 
+            tokktokk.bitmapData = Assets.tokktokkBitmap.bitmapData;
+            tokktokk.x = 7;
+            tokktokk.y = 6;
+            addChild(tokktokk);
+
             // Buttons erstellen
-            playIcon.bitmapData = Assets.okBitmap.bitmapData;
             playIcon.y = buttonOffsetTop;
-            playIcon.x = 58;
+            playIcon.x = 68;
             playIconSprite.addChild(playIcon);
             playIconSprite.useHandCursor = true;
             playIconSprite.buttonMode = true;
@@ -134,20 +140,22 @@ package net.muschko.tokktokk.screens
             consumptionFormat.color = 0x666666;
             consumptionFormat.align = "center";
             consumptionTextField.antiAliasType = AntiAliasType.NORMAL;
-            consumptionTextField.y = 13;
+            consumptionTextField.y = 28;
             consumptionTextField.embedFonts = true;
-            consumptionTextField.x = stage.stageWidth - consumptionTextField.width- 10;
+            consumptionTextField.x = stage.stageWidth - 31;
             consumptionTextField.defaultTextFormat = consumptionFormat;
-            consumptionTextField.autoSize = TextFieldAutoSize.RIGHT;
             consumptionTextField.selectable = false;
             consumptionTextField.mouseEnabled = true;
+            consumptionTextField.width = 35;
+            consumptionTextField.height = 20;
             addChild(consumptionTextField);
-            consumptionTextField.addEventListener(MouseEvent.CLICK, changeHUD);
+            //consumptionTextField.addEventListener(MouseEvent.CLICK, changeHUD);
 
             //  Userdaten
             userData = UserData.getUserData();
 
             timerMilliseconds = (userData._remindTime * 60 * 1000);
+            trace(timerMilliseconds);
             //remindTimer = new Timer(timerMilliseconds);
             remindTimer = new Timer(5000);
 
@@ -173,10 +181,10 @@ package net.muschko.tokktokk.screens
                 remindTimer.start();
                 remindTimer.addEventListener(TimerEvent.TIMER, remind);
 
-                playIconSprite.alpha = 1;
+                playIcon.bitmapData = Assets.pauseBitmap.bitmapData;
             }
             else {
-                playIconSprite.alpha = 0.5;
+                playIcon.bitmapData = Assets.okBitmap.bitmapData;
             }
 
             toolbarBackground.addEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
@@ -292,6 +300,7 @@ package net.muschko.tokktokk.screens
          */
         private function createScreen(screenName:Class, params:Object = null):void
         {
+            TweenMax.to(tokktokk, 0.3, {alpha: 0 });
             var screen:Class = getDefinitionByName(getQualifiedClassName(screenName)) as Class;
             if (params != null) {
                 currentScreen = new screen(params);
@@ -326,16 +335,16 @@ package net.muschko.tokktokk.screens
             // Wenn reminding angeschaltet ist
             if (userData._remind) {
                 userData._remind = false;
-                playIconSprite.alpha = 0.5;
 
                 remindTimer.stop();
                 remindTimer.removeEventListener(TimerEvent.TIMER, remind);
+                playIcon.bitmapData = Assets.okBitmap.bitmapData;
             }
             else {
                 userData._remind = true;
-                playIconSprite.alpha = 1;
                 remindTimer.start();
                 remindTimer.addEventListener(TimerEvent.TIMER, remind);
+                playIcon.bitmapData = Assets.pauseBitmap.bitmapData;
             }
             UserData.saveUserData(userData);
         }
@@ -368,6 +377,7 @@ package net.muschko.tokktokk.screens
          */
         private function quitScreen(event:Event):void
         {
+            TweenMax.to(tokktokk, 0.3, {alpha: 1 });
             TweenMax.to(currentScreen, 0.3, {alpha: 0, onComplete: function ():void
             {
                 updateLiter(null);

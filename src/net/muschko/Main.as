@@ -2,17 +2,12 @@ package net.muschko
 {
     import flash.desktop.NativeApplication;
     import flash.display.NativeWindow;
-    import flash.display.NativeWindowDisplayState;
-    import flash.display.NativeWindowInitOptions;
-    import flash.display.NativeWindowType;
     import flash.display.Screen;
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
-    import flash.events.InvokeEvent;
     import flash.events.MouseEvent;
-    import flash.events.NativeWindowDisplayStateEvent;
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.net.registerClassAlias;
@@ -112,10 +107,6 @@ package net.muschko
         private function activate(event:Event):void
         {
             stage.frameRate = 30;
-
-            if (!userData._minimized) {
-                Settings.nativeWindow.visible = true;
-            }
         }
 
         /**

@@ -23,7 +23,7 @@ package net.muschko.tokktokk.native
         private var updater:UpdateTokkTokk = new UpdateTokkTokk(false);
 
         // UserData
-        private var userData:UserData = UserData.getUserData();
+        private var userData:UserData;
 
         public function ContextMenues()
         {
@@ -39,6 +39,8 @@ package net.muschko.tokktokk.native
             var xml:XML = NativeApplication.nativeApplication.applicationDescriptor;
             var ns:Namespace = xml.namespace();
             var version:String = xml.ns::versionNumber;
+
+            userData = UserData.getUserData();
 
             // Title Kontext
             var titleItem:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("TokkTokk! " + version));
@@ -84,6 +86,8 @@ package net.muschko.tokktokk.native
             var ns:Namespace = xml.namespace();
             var version:String = xml.ns::versionNumber;
 
+            userData = UserData.getUserData();
+
             // Title Kontext
             var titleItem:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("TokkTokk! " + version));
             titleItem.enabled = false;
@@ -125,15 +129,17 @@ package net.muschko.tokktokk.native
 
             if (userData._minimized) {
                 userData._minimized = false;
+                UserData.saveUserData(userData);
                 Settings.nativeWindow.visible = true;
+                Settings.nativeWindow.orderToFront();
                 new SystemTray(new ContextMenues());
+
             } else {
                 userData._minimized = true;
+                UserData.saveUserData(userData);
                 Settings.nativeWindow.visible = false;
                 new SystemTray(new ContextMenues());
             }
-
-            UserData.saveUserData(userData);
         }
 
         /**
