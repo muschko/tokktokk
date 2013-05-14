@@ -40,21 +40,21 @@ package net.muschko.tokktokk
         private function init():void
         {
             this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+        }
+
+        private function addedToStageHandler(e:Event):void
+        {
             addChild(mainToolbar);
             mainToolbar.addEventListener("REMIND", remind);
 
             //  Userdaten
             userData = UserData.getUserData();
 
-        }
-
-        private function addedToStageHandler(e:Event):void
-        {
             removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 
-            if (!userData._minimized) {
-                Settings.nativeWindow.visible = true;
-            }
+            /*if (!userData._minimized) {
+             Settings.nativeWindow.visible = true;
+             }*/
         }
 
         /**
@@ -131,9 +131,9 @@ package net.muschko.tokktokk
 
                 mainToolbar.setTimer();
 
-                if (userData._minimized) {
-                    Settings.nativeWindow.visible = false;
-                }
+                /*if (userData._minimized) {
+                 Settings.nativeWindow.visible = false;
+                 }*/
             }})
         }
 
@@ -152,11 +152,11 @@ package net.muschko.tokktokk
             Settings.nativeWindow.width = 225;
             Settings.nativeWindow.height = 85;
 
-            if (userData._minimized) {
-                Settings.nativeWindow.visible = false;
-            } else {
-                TweenMax.to(mainToolbar, 1, {alpha: 1});
-            }
+            /*if (userData._minimized) {
+             Settings.nativeWindow.visible = false;
+             } else {*/
+            TweenMax.to(mainToolbar, 1, {alpha: 1});
+            //}
 
             mainToolbar.setTimer();
         }

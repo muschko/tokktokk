@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/3.6">
     <id>net.muschko.TokkTokk</id>
-    <versionNumber>1.0</versionNumber>
+    <versionNumber>0.7</versionNumber>
     <filename>TokkTokk</filename>
     <name>TokkTokk!</name>
     <copyright>Henning Muschko, Annica Storm</copyright>
@@ -11,7 +11,7 @@
         <content>TokkTokk.swf</content>
         <systemChrome>none</systemChrome>
         <transparent>true</transparent>
-        <visible>false</visible>
+        <visible>true</visible>
         <minimizable>true</minimizable>
         <maximizable>true</maximizable>
         <resizable>false</resizable>

@@ -37,7 +37,7 @@ package net.muschko
         private var systemTray:SystemTray;
 
         // ContextMenues
-        private var contextMenues:ContextMenues = new ContextMenues();
+        private var contextMenues:ContextMenues;
 
         public function Main():void
         {
@@ -81,7 +81,7 @@ package net.muschko
             Settings.nativeWindow.y = userData._windowPosition.y;
 
             // SystemTray setztn
-            systemTray = new SystemTray(contextMenues);
+            systemTray = new SystemTray(new ContextMenues());
 
             // Prüft ab ob
             Settings.nativeWindow.addEventListener(Event.CLOSING, closingWindow);

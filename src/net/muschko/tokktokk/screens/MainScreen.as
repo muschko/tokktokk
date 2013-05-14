@@ -151,13 +151,7 @@ package net.muschko.tokktokk.screens
             addChild(consumptionTextField);
             //consumptionTextField.addEventListener(MouseEvent.CLICK, changeHUD);
 
-            //  Userdaten
             userData = UserData.getUserData();
-
-            timerMilliseconds = (userData._remindTime * 60 * 1000);
-            trace(timerMilliseconds);
-            //remindTimer = new Timer(timerMilliseconds);
-            remindTimer = new Timer(5000);
 
             // Setzt die Timer
             setTimer();
@@ -167,7 +161,6 @@ package net.muschko.tokktokk.screens
 
             // Überprüft ob ein update vorliegt
             updateTokkTokk.update();
-
             updateTokkTokk.updaterUI.addEventListener(StatusUpdateEvent.UPDATE_STATUS, check);
         }
 
@@ -178,12 +171,11 @@ package net.muschko.tokktokk.screens
         {
             // Wenn reminding angeschaltet ist
             if (userData._remind) {
-                remindTimer.start();
-                remindTimer.addEventListener(TimerEvent.TIMER, remind);
-
+                startTimer();
                 playIcon.bitmapData = Assets.pauseBitmap.bitmapData;
             }
             else {
+                killTimer();
                 playIcon.bitmapData = Assets.okBitmap.bitmapData;
             }
 
@@ -197,15 +189,10 @@ package net.muschko.tokktokk.screens
          */
         private function updateTime(event:Event):void
         {
-            userData = UserData.getUserData();
-            timerMilliseconds = userData._remindTime * 60 * 1000;
-
             // Wenn reminding angeschaltet ist
             if (userData._remind) {
-                remindTimer.stop();
-                remindTimer = new Timer(timerMilliseconds);
-                remindTimer.start();
-                remindTimer.addEventListener(TimerEvent.TIMER, remind);
+                killTimer();
+                startTimer();
             }
         }
 
@@ -270,8 +257,7 @@ package net.muschko.tokktokk.screens
                 toolbarBackground.removeEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
             }
 
-            remindTimer.stop();
-            remindTimer.removeEventListener(TimerEvent.TIMER, remind);
+            killTimer();
 
             openRemindScreen();
         }
@@ -300,6 +286,8 @@ package net.muschko.tokktokk.screens
          */
         private function createScreen(screenName:Class, params:Object = null):void
         {
+            killTimer();
+
             TweenMax.to(tokktokk, 0.3, {alpha: 0 });
             var screen:Class = getDefinitionByName(getQualifiedClassName(screenName)) as Class;
             if (params != null) {
@@ -332,21 +320,21 @@ package net.muschko.tokktokk.screens
          */
         private function toggleRemind(event:MouseEvent):void
         {
+            userData = UserData.getUserData();
+
             // Wenn reminding angeschaltet ist
             if (userData._remind) {
                 userData._remind = false;
-
-                remindTimer.stop();
-                remindTimer.removeEventListener(TimerEvent.TIMER, remind);
+                killTimer();
                 playIcon.bitmapData = Assets.okBitmap.bitmapData;
+                UserData.saveUserData(userData);
             }
             else {
                 userData._remind = true;
-                remindTimer.start();
-                remindTimer.addEventListener(TimerEvent.TIMER, remind);
+                startTimer();
                 playIcon.bitmapData = Assets.pauseBitmap.bitmapData;
+                UserData.saveUserData(userData);
             }
-            UserData.saveUserData(userData);
         }
 
         /**
@@ -391,9 +379,36 @@ package net.muschko.tokktokk.screens
          */
         private function check(event:StatusUpdateEvent):void
         {
-            updateInfo.visible = true;
-            updateInfo.showUpdateInfo(event.version);
+            if (event.available) {
+                updateInfo.visible = true;
+                updateInfo.showUpdateInfo(event.version);
+            }
+        }
 
+        /**
+         * Kill Timer
+         */
+        private function killTimer():void
+        {
+            if (remindTimer != null) {
+                remindTimer.reset();
+                remindTimer.removeEventListener(TimerEvent.TIMER, remind);
+                remindTimer = null;
+            }
+        }
+
+        /**
+         * Start Timer
+         */
+        private function startTimer():void
+        {
+            //  Userdaten
+            userData = UserData.getUserData();
+            timerMilliseconds = (userData._remindTime * 60 * 1000);
+
+            remindTimer = new Timer(timerMilliseconds);
+            remindTimer.start();
+            remindTimer.addEventListener(TimerEvent.TIMER, remind);
         }
     }
 }

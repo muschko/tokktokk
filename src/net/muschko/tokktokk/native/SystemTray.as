@@ -62,13 +62,12 @@ package net.muschko.tokktokk.native
         {
             var userData:UserData = UserData.getUserData();
 
-            if (!userData._minimized) {
-                trace("test");
-                Settings.nativeWindow.activate();
-                Settings.nativeWindow.orderToFront();
-                Settings.nativeWindow.visible = true;
+            //if (!userData._minimized) {
+            Settings.nativeWindow.activate();
+            Settings.nativeWindow.orderToFront();
+            Settings.nativeWindow.visible = true;
 
-            }
+            //}
         }
     }
 }
