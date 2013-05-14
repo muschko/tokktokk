@@ -18,10 +18,10 @@ package net.muschko.tokktokk.native
         private var contextMenues:ContextMenues;
 
         // Windows Systray
-        var systray:SystemTrayIcon;
+        private var systray:SystemTrayIcon;
 
         // MacOS Dock
-        var dock:DockIcon
+        private var dock:DockIcon
 
         public function SystemTray(contextMenues:ContextMenues)
         {
