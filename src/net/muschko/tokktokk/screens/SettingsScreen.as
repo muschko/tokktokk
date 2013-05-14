@@ -53,10 +53,10 @@ package net.muschko.tokktokk.screens
             labelFormat.color = 0x666666;
 
             // Toolbar Hintergrund
-            /* inputBackground.bitmapData = Assets.backgroundInputBitmap.bitmapData;
-             inputBackground.x = 57;
-             inputBackground.y = 12;
-             addChild(inputBackground);*/
+             inputBackground.bitmapData = Assets.backgroundInputBitmap.bitmapData;
+             inputBackground.x = 67;
+             inputBackground.y = 27;
+             addChild(inputBackground);
 
             inputMinutesTextField.antiAliasType = AntiAliasType.NORMAL;
             inputMinutesTextField.y = 26;

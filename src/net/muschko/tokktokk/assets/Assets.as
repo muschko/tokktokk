@@ -13,9 +13,9 @@ package net.muschko.tokktokk.assets
         private static const BackgroundSubBitmap:Class;
         public static const backgroundSubBitmap:Bitmap = new BackgroundSubBitmap();
 
-        /*[Embed(source="../../../../../media/assets/images/background_input.png")]
+        [Embed(source="../../../../../media/assets/images/background_input.png")]
          private static const BackgroundInputBitmap:Class;
-         public static const backgroundInputBitmap:Bitmap = new BackgroundInputBitmap();*/
+         public static const backgroundInputBitmap:Bitmap = new BackgroundInputBitmap();
 
         [Embed(source="../../../../../media/assets/images/tokktokk.png")]
         private static const TokkTokkBitmap:Class;
