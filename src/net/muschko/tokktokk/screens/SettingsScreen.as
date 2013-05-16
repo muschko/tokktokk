@@ -3,6 +3,7 @@ package net.muschko.tokktokk.screens
     import flash.display.Bitmap;
     import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.KeyboardEvent;
     import flash.events.MouseEvent;
     import flash.text.AntiAliasType;
     import flash.text.TextField;
@@ -53,10 +54,10 @@ package net.muschko.tokktokk.screens
             labelFormat.color = 0x666666;
 
             // Toolbar Hintergrund
-             inputBackground.bitmapData = Assets.backgroundInputBitmap.bitmapData;
-             inputBackground.x = 67;
-             inputBackground.y = 27;
-             addChild(inputBackground);
+            inputBackground.bitmapData = Assets.backgroundInputBitmap.bitmapData;
+            inputBackground.x = 67;
+            inputBackground.y = 27;
+            addChild(inputBackground);
 
             inputMinutesTextField.antiAliasType = AntiAliasType.NORMAL;
             inputMinutesTextField.y = 26;
@@ -71,6 +72,7 @@ package net.muschko.tokktokk.screens
             inputMinutesTextField.restrict = "0-9";
             inputMinutesTextField.maxChars = 2;
             addChild(inputMinutesTextField);
+            inputMinutesTextField.addEventListener(KeyboardEvent.KEY_DOWN, goBackAndSave);
 
             labelMinutesTextField.antiAliasType = AntiAliasType.NORMAL;
             labelMinutesTextField.y = 25;
@@ -124,6 +126,22 @@ package net.muschko.tokktokk.screens
 
             this.dispatchEvent(new Event("UPDATE_TIME"));
             this.dispatchEvent(new Event("QUIT_SCREEN"));
+        }
+
+        /**
+         * Bei Enter abspeichern
+         * @param event
+         */
+        private function goBackAndSave(event:KeyboardEvent):void
+        {
+            // if the key is ENTER
+            if (event.charCode == 13) {
+
+                // your code here
+                quitScreen(null);
+            }
+
+
         }
     }
 }

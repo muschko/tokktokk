@@ -10,7 +10,6 @@ package net.muschko.tokktokk.native
 
     import net.muschko.tokktokk.assets.Assets;
     import net.muschko.tokktokk.common.Settings;
-    import net.muschko.tokktokk.data.UserData;
 
     public class SystemTray
     {
@@ -60,14 +59,9 @@ package net.muschko.tokktokk.native
 
         private function activate(event:Event):void
         {
-            var userData:UserData = UserData.getUserData();
-
-            //if (!userData._minimized) {
             Settings.nativeWindow.activate();
-            Settings.nativeWindow.orderToFront();
-            Settings.nativeWindow.visible = true;
-
-            //}
+            Settings.nativeWindow.alwaysInFront = true;
+            Settings.nativeWindow.alwaysInFront = false;
         }
     }
 }

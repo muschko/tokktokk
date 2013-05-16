@@ -252,6 +252,9 @@ package net.muschko.tokktokk.screens
          */
         private function remind(e:TimerEvent):void
         {
+            Settings.nativeWindow.alwaysInFront = true;
+            Settings.nativeWindow.activate();
+
             if (Settings.nativeWindow.startMove()) {
                 toolbarBackground.removeEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
                 toolbarBackground.removeEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
