@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/3.6">
     <id>net.muschko.TokkTokk</id>
-    <versionNumber>0.71</versionNumber>
+    <versionNumber>0.72</versionNumber>
     <filename>TokkTokk</filename>
     <name>TokkTokk!</name>
     <copyright>Henning Muschko, Annica Storm</copyright>
@@ -28,7 +28,7 @@
     </icon>
     <supportedProfiles>desktop extendedDesktop</supportedProfiles>
 
-    <description>TokkTokk! erinnert dich immer ans Trinken!</description>
+    <description>TokkTokk wirft ein Auge auf dich!</description>
 
     <!--
       More options:

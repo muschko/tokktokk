@@ -33,8 +33,6 @@ package net.muschko.tokktokk.native
                 _updaterUI.isDownloadUpdateVisible = false;
                 _updaterUI.isInstallUpdateVisible = false;
                 _updaterUI.isUnexpectedErrorVisible = false;
-            } else {
-                _updaterUI.isCheckForUpdateVisible = false;
             }
             _updaterUI.addEventListener(ErrorEvent.ERROR, error);
             _updaterUI.addEventListener(UpdateEvent.INITIALIZED, init);
