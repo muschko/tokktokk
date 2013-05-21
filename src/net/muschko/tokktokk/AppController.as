@@ -64,9 +64,11 @@ package net.muschko.tokktokk
         private function remind(event:Event):void
         {
             // Blendet die Toolbar aus
-            if (userData._minimized) {
+            if (!Settings.nativeWindow.visible) {
+
                 mainToolbar.alpha = 0;
-                Settings.nativeWindow.restore();
+                Settings.nativeWindow.alwaysInFront = true;
+                Settings.nativeWindow.activate();
                 timer.start();
                 timer.addEventListener(TimerEvent.TIMER, showRemind);
             } else {

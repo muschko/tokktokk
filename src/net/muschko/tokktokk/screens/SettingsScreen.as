@@ -121,10 +121,16 @@ package net.muschko.tokktokk.screens
          */
         override public function quitScreen(event:MouseEvent):void
         {
-            userData._remindTime = Number(inputMinutesTextField.text);
-            UserData.saveUserData(userData);
+            inputMinutesTextField.removeEventListener(KeyboardEvent.KEY_DOWN, goBackAndSave);
 
-            this.dispatchEvent(new Event("UPDATE_TIME"));
+            // Nur Zeit updaten, wenn man auch eine Zeit ändert
+            if (!(userData._remindTime == Number(inputMinutesTextField.text))) {
+                userData._remindTime = Number(inputMinutesTextField.text);
+                UserData.saveUserData(userData);
+                this.dispatchEvent(new Event("UPDATE_TIME"));
+            }
+
+             // Zurück zum Hauptscreen
             this.dispatchEvent(new Event("QUIT_SCREEN"));
         }
 
@@ -140,8 +146,6 @@ package net.muschko.tokktokk.screens
                 // your code here
                 quitScreen(null);
             }
-
-
         }
     }
 }

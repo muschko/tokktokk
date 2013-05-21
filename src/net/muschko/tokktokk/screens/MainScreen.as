@@ -252,9 +252,6 @@ package net.muschko.tokktokk.screens
          */
         private function remind(e:TimerEvent):void
         {
-            Settings.nativeWindow.alwaysInFront = true;
-            Settings.nativeWindow.activate();
-
             if (Settings.nativeWindow.startMove()) {
                 toolbarBackground.removeEventListener(MouseEvent.MOUSE_DOWN, moveToolbar);
                 toolbarBackground.removeEventListener(MouseEvent.MOUSE_UP, saveToolbarPosition);
@@ -289,7 +286,6 @@ package net.muschko.tokktokk.screens
          */
         private function createScreen(screenName:Class, params:Object = null):void
         {
-            killTimer();
 
             TweenMax.to(tokktokk, 0.3, {alpha: 0 });
             var screen:Class = getDefinitionByName(getQualifiedClassName(screenName)) as Class;
