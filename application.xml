@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/3.6">
     <id>net.muschko.TokkTokk</id>
-    <versionNumber>0.73</versionNumber>
+    <versionNumber>0.74</versionNumber>
     <filename>TokkTokk</filename>
     <name>TokkTokk!</name>
     <copyright>Henning Muschko, Annica Storm</copyright>

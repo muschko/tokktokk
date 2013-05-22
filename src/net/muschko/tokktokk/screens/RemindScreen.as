@@ -26,7 +26,7 @@ package net.muschko.tokktokk.screens
         public var background:Sprite = new Sprite();
 
         // Timer
-        private var timer:Timer = new Timer(15000, 1);
+        private var timer:Timer = new Timer(12000, 1);
 
         public function RemindScreen()
         {
