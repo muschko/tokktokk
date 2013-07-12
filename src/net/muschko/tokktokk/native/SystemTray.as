@@ -40,7 +40,7 @@ package net.muschko.tokktokk.native
                 NativeApplication.nativeApplication.icon.bitmaps = [Assets.trayBitmap];
 
                 systray = NativeApplication.nativeApplication.icon as SystemTrayIcon;
-                systray.tooltip = "TokkTokk!";
+                systray.tooltip = "tokk!tokk!";
                 systray.addEventListener(MouseEvent.CLICK, activate);
                 systray.menu = contextMenues.trayMenu;
             }

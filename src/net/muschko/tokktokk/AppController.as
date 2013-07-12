@@ -113,7 +113,7 @@ package net.muschko.tokktokk
          */
         private function quitRemind(event:Event):void
         {
-            TweenMax.to(remindScreen, 5, {alpha: 0, onComplete: function ():void
+            TweenMax.to(remindScreen, 3, {alpha: 0, onComplete: function ():void
             {
                 Mouse.show();
                 Settings.nativeWindow.alwaysInFront = false;

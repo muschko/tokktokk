@@ -43,7 +43,7 @@ package net.muschko.tokktokk.native
             userData = UserData.getUserData();
 
             // Title Kontext
-            var titleItem:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("TokkTokk! " + version));
+            var titleItem:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("tokk!tokk! " + version));
             titleItem.enabled = false;
 
             var separatorA:NativeMenuItem = new NativeMenuItem("A", true);
@@ -59,7 +59,7 @@ package net.muschko.tokktokk.native
              stayMinimizedCommand.addEventListener(Event.SELECT, stayMinimized);*/
 
             // Über Kontext
-            var aboutCommand:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("Über TokkTokk!"));
+            var aboutCommand:NativeMenuItem = trayMenu.addItem(new NativeMenuItem("Über tokk!tokk!"));
             aboutCommand.addEventListener(Event.SELECT, openLink);
 
             // Schließen Menu nur bei Windows anzeigen
@@ -89,7 +89,7 @@ package net.muschko.tokktokk.native
             userData = UserData.getUserData();
 
             // Title Kontext
-            var titleItem:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("TokkTokk! " + version));
+            var titleItem:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("tokk!tokk! " + version));
             titleItem.enabled = false;
 
             var separatorA:NativeMenuItem = new NativeMenuItem("A", true);
@@ -109,13 +109,13 @@ package net.muschko.tokktokk.native
              stayMinimizedCommand.addEventListener(Event.SELECT, stayMinimized);*/
 
             // Update Kontext
-            var aboutCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Über TokkTokk!"));
+            var aboutCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Über tokk!tokk!"));
             aboutCommand.addEventListener(Event.SELECT, openLink);
 
             var separatorB:NativeMenuItem = new NativeMenuItem("A", true);
             rightClickMenu.addItem(separatorB);
 
-            var exitCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Schließen"));
+            var exitCommand:NativeMenuItem = rightClickMenu.addItem(new NativeMenuItem("Minimieren"));
             exitCommand.addEventListener(Event.SELECT, function (event:Event):void
             {
                 event.preventDefault();

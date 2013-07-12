@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/3.6">
     <id>net.muschko.TokkTokk</id>
-    <versionNumber>0.74</versionNumber>
-    <filename>TokkTokk</filename>
-    <name>TokkTokk!</name>
+    <versionNumber>1.0</versionNumber>
+    <filename>tokk!tokk!</filename>
+    <name>tokk!tokk!</name>
     <copyright>Henning Muschko, Annica Storm</copyright>
 
     <initialWindow>
-        <title>TokkTokk!</title>
+        <title>tokk!tokk!</title>
         <content>TokkTokk.swf</content>
         <systemChrome>none</systemChrome>
         <transparent>true</transparent>
@@ -30,8 +30,4 @@
 
     <description>TokkTokk wirft ein Auge auf dich!</description>
 
-    <!--
-      More options:
-      http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
-      -->
 </application>
